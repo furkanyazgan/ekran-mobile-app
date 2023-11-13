@@ -1,0 +1,4 @@
+fonts:
+    - family: Euclid-Circular-B
+      fonts:
+        - asset: assets/fonts/Euclid-Circular-B-Medium.ttf
