@@ -112,7 +112,7 @@ class _UniversitsssyOrAroundPageState extends State<LoginPage> {
                     TextButton(
                       onPressed: () {},
                       child: Text(
-                        "Forgot Password?",
+                        "Forgoten Password?",
                         style: TextStyle(
                             fontSize: 16, color: themeProjectColors.mainColor),
                       ),
