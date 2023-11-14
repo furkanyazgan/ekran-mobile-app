@@ -1,4 +1,5 @@
 import 'package:ekran/constants/asset_paths.dart';
+import 'package:ekran/widgets/custombutton.dart';
 import 'package:flutter/material.dart';
 import 'package:ekran/constants/project_themes.dart';
 
@@ -6,10 +7,10 @@ class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
 
   @override
-  State<LoginPage> createState() => _UniversitsssyOrAroundPageState();
+  State<LoginPage> createState() => _LoginPageState();
 }
 
-class _UniversitsssyOrAroundPageState extends State<LoginPage> {
+class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     final themeProjectColors = Theme.of(context).extension<ProjectTheme>()!;
@@ -17,6 +18,19 @@ class _UniversitsssyOrAroundPageState extends State<LoginPage> {
       backgroundColor: themeProjectColors.mainColor,
       body: Stack(
         children: [
+          Wrap(
+            children: [
+              Opacity(
+                opacity: 0.25,
+                child: Image.asset(
+                  AssetPath.userIcon3,
+                  width: MediaQuery.sizeOf(context).width,
+                  fit: BoxFit.cover,
+                  color: Color(0xFFF5F5F5),
+                ),
+              )
+            ],
+          ),
           Center(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -116,7 +130,20 @@ class _UniversitsssyOrAroundPageState extends State<LoginPage> {
                         style: TextStyle(
                             fontSize: 16, color: themeProjectColors.mainColor),
                       ),
-                    )
+                    ),
+                    Spacer(),
+                    Center(
+                      child: CustomButton(
+                          child: Text(
+                            "Start Connecting Now!",
+                            style: TextStyle(color: Colors.white, fontSize: 24),
+                          ),
+                          width: 294,
+                          height: 54,
+                          color: Color(0xff20AFB5),
+                          onTap: () {}),
+                    ),
+                    SizedBox(height: 30,)
                   ],
                 ),
               ),

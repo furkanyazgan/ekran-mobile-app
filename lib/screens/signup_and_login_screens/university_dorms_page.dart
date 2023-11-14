@@ -1,13 +1,11 @@
 import 'package:ekran/constants/asset_paths.dart';
-import 'package:ekran/screens/signup_and_login_screens/personal_details_page.dart';
-import 'package:ekran/screens/signup_and_login_screens/personal_details_school_page.dart';
 import 'package:ekran/widgets/custombutton.dart';
 import 'package:flutter/material.dart';
 import 'package:ekran/constants/project_themes.dart';
 import 'package:ekran/constants/text_styles.dart';
 
-class UniversityOrAroundPage extends StatelessWidget {
-  const UniversityOrAroundPage({Key? key}) : super(key: key);
+class UniversityDormsPage extends StatelessWidget {
+  const UniversityDormsPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +43,7 @@ class UniversityOrAroundPage extends StatelessWidget {
                   flex: 2,
                 ),
                 Text(
-                  "Uni - Uni / Normal Connection",
+                  "Are you residing in your university dorms?",
                   textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 32, color: Colors.white),
                 ),
@@ -70,46 +68,53 @@ class UniversityOrAroundPage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     SizedBox(
-                      height: 40,
+                      height: 78,
                     ),
                     CustomButton(
                         child: Padding(
                             padding: EdgeInsets.symmetric(horizontal: 20),
-                            child: Text(
-                              "To connect with people within my university",
-                              style: TextStyles.buttonTextStyle,
+                            child: Row(
+                              children: [
+                                Text(
+                                  "Yes",
+                                  style: TextStyles.buttonTextStyle,
+                                ),
+                                Spacer()
+                              ],
                             )),
                         width: 318,
-                        height: 87,
+                        height: 53,
                         color: Color(0xff7acfd3),
                         animationColor: Color(0xff21AFB5),
                         borderRadius: 10,
-                        onTap: () {
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (_) => PersonalDetailsSchoolPage()));
-
-
-                        }),
+                        onTap: () {}),
                     SizedBox(
-                      height: 25,
+                      height: 22,
                     ),
                     CustomButton(
                         child: Padding(
                             padding: EdgeInsets.symmetric(horizontal: 20),
-                            child: Text(
-                              "To connect with people around me",
-                              style: TextStyles.buttonTextStyle,
+                            child: Row(
+                              children: [
+                                Text(
+                                  "No",
+                                  style: TextStyles.buttonTextStyle,
+
+                                ),
+                                Spacer()
+                              ],
                             )),
                         width: 318,
-                        height: 87,
+                        height: 53,
                         color: Color(0xff7acfd3),
                         animationColor: Color(0xff21AFB5),
                         borderRadius: 10,
-                        onTap: () {
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (_) => PersonalDetailsPage()));
+                        onTap: () {}),
+                    Spacer(),
+                    TextButton(onPressed: (){
 
-                        })
+                    }, child: Text("or skip for now",style: TextStyle(fontSize: 22,color: Color(0xff9e9e9e)),)),
+                    SizedBox(height: 74,)
                   ],
                 ),
               ),

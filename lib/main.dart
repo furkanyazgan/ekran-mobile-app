@@ -1,6 +1,9 @@
 import 'package:ekran/constants/project_themes.dart';
 import 'package:ekran/screens/signup_and_login_screens/login_page.dart';
+import 'package:ekran/screens/signup_and_login_screens/personal_details_page.dart';
+import 'package:ekran/screens/signup_and_login_screens/personal_details_school_page.dart';
 import 'package:ekran/screens/signup_and_login_screens/start_main_page.dart';
+import 'package:ekran/screens/signup_and_login_screens/university_dorms_page.dart';
 import 'package:ekran/screens/signup_and_login_screens/university_or_around.dart';
 import 'package:flutter/material.dart';
 
@@ -20,7 +23,7 @@ class MyApp extends StatelessWidget {
         ],
       ),
       debugShowCheckedModeBanner: false,
-      home: LoginPage(),
+      home: StartMainPage(),
     );
   }
 }
