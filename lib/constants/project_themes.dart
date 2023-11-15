@@ -118,7 +118,7 @@ class ProjectTheme extends ThemeExtension<ProjectTheme> {
 
 
 
-
+  @override
   ProjectTheme lerp(ThemeExtension<ProjectTheme>? other, double time) {
     double t = time / 15;
     if (other is! ProjectTheme) {

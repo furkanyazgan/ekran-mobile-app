@@ -3,12 +3,12 @@
 import 'package:flutter/material.dart';
 
 class CustomButton extends StatefulWidget {
-  CustomButton( {Key? key, required this.child,required this.width  ,required this.height, required this.onTap, this.color=Colors.white ,this.animationColor , this.borderRadius=20.0 } )
+  CustomButton( {Key? key, required this.child,  this.width  ,required this.height, required this.onTap, this.color=Colors.white ,this.animationColor , this.borderRadius=20.0 } )
       : super(key: key);
 
   Function onTap;
   Widget child;
-  double width;
+  double? width;
   double height;
   Color color ;
   Color? animationColor;
