@@ -1,19 +1,18 @@
 import 'package:ekran/constants/asset_paths.dart';
-import 'package:ekran/screens/signup_and_login_screens/university_dorms_page.dart';
-import 'package:ekran/widgets/custombutton.dart';
+import 'package:ekran/ui/widgets/custombutton.dart';
 import 'package:flutter/material.dart';
 import 'package:ekran/constants/project_themes.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'dart:math';
 
-class PersonalDetailsSchoolPage extends StatefulWidget {
-  const PersonalDetailsSchoolPage({Key? key}) : super(key: key);
+class PersonalDetailsPage extends StatefulWidget {
+  const PersonalDetailsPage({Key? key}) : super(key: key);
 
   @override
-  State<PersonalDetailsSchoolPage> createState() => _PersonalDetailsSchoolPageState();
+  State<PersonalDetailsPage> createState() => _PersonalDetailsPageState();
 }
 
-class _PersonalDetailsSchoolPageState extends State<PersonalDetailsSchoolPage> {
+class _PersonalDetailsPageState extends State<PersonalDetailsPage> {
   final List<String> items = ["Male", "Female", "Other"];
   String? selectedValue;
 
@@ -80,11 +79,11 @@ class _PersonalDetailsSchoolPageState extends State<PersonalDetailsSchoolPage> {
                   children: [
                     Padding(
                       padding:
-                      const EdgeInsets.only(left: 1, top: 10, bottom: 10),
+                          const EdgeInsets.only(left: 1, top: 10, bottom: 10),
                       child: Text(
                         "First Name",
                         style:
-                        TextStyle(fontSize: 20, color: Color(0xff7e8086)),
+                            TextStyle(fontSize: 20, color: Color(0xff7e8086)),
                       ),
                     ),
                     SizedBox(
@@ -98,23 +97,23 @@ class _PersonalDetailsSchoolPageState extends State<PersonalDetailsSchoolPage> {
                             fillColor: Color(0xffC8EBED),
                             enabledBorder: OutlineInputBorder(
                                 borderSide:
-                                BorderSide(color: Colors.transparent),
+                                    BorderSide(color: Colors.transparent),
                                 borderRadius:
-                                BorderRadius.all(Radius.circular(5))),
+                                    BorderRadius.all(Radius.circular(5))),
                             focusedBorder: OutlineInputBorder(
                                 borderSide:
-                                BorderSide(color: Colors.transparent),
+                                    BorderSide(color: Colors.transparent),
                                 borderRadius:
-                                BorderRadius.all(Radius.circular(5)))),
+                                    BorderRadius.all(Radius.circular(5)))),
                       ),
                     ),
                     Padding(
                       padding:
-                      const EdgeInsets.only(left: 1, top: 10, bottom: 10),
+                          const EdgeInsets.only(left: 1, top: 10, bottom: 10),
                       child: Text(
                         "Last Name",
                         style:
-                        TextStyle(fontSize: 20, color: Color(0xff7e8086)),
+                            TextStyle(fontSize: 20, color: Color(0xff7e8086)),
                       ),
                     ),
                     SizedBox(
@@ -128,23 +127,23 @@ class _PersonalDetailsSchoolPageState extends State<PersonalDetailsSchoolPage> {
                             fillColor: Color(0xffC8EBED),
                             enabledBorder: OutlineInputBorder(
                                 borderSide:
-                                BorderSide(color: Colors.transparent),
+                                    BorderSide(color: Colors.transparent),
                                 borderRadius:
-                                BorderRadius.all(Radius.circular(5))),
+                                    BorderRadius.all(Radius.circular(5))),
                             focusedBorder: OutlineInputBorder(
                                 borderSide:
-                                BorderSide(color: Colors.transparent),
+                                    BorderSide(color: Colors.transparent),
                                 borderRadius:
-                                BorderRadius.all(Radius.circular(5)))),
+                                    BorderRadius.all(Radius.circular(5)))),
                       ),
                     ),
                     Padding(
                       padding:
-                      const EdgeInsets.only(left: 1, top: 10, bottom: 10),
+                          const EdgeInsets.only(left: 1, top: 10, bottom: 10),
                       child: Text(
-                        "School Email",
+                        "Email",
                         style:
-                        TextStyle(fontSize: 20, color: Color(0xff7e8086)),
+                            TextStyle(fontSize: 20, color: Color(0xff7e8086)),
                       ),
                     ),
                     SizedBox(
@@ -158,14 +157,14 @@ class _PersonalDetailsSchoolPageState extends State<PersonalDetailsSchoolPage> {
                             fillColor: Color(0xffC8EBED),
                             enabledBorder: OutlineInputBorder(
                                 borderSide:
-                                BorderSide(color: Colors.transparent),
+                                    BorderSide(color: Colors.transparent),
                                 borderRadius:
-                                BorderRadius.all(Radius.circular(5))),
+                                    BorderRadius.all(Radius.circular(5))),
                             focusedBorder: OutlineInputBorder(
                                 borderSide:
-                                BorderSide(color: Colors.transparent),
+                                    BorderSide(color: Colors.transparent),
                                 borderRadius:
-                                BorderRadius.all(Radius.circular(5)))),
+                                    BorderRadius.all(Radius.circular(5)))),
                       ),
                     ),
                     SizedBox(
@@ -177,21 +176,21 @@ class _PersonalDetailsSchoolPageState extends State<PersonalDetailsSchoolPage> {
                         hint: Text(
                           'Gender',
                           style:
-                          TextStyle(fontSize: 20, color: Color(0xff928e9a)),
+                              TextStyle(fontSize: 20, color: Color(0xff928e9a)),
                           overflow: TextOverflow.ellipsis,
                         ),
                         items: items
                             .map((String item) => DropdownMenuItem<String>(
-                          value: item,
-                          child: Text(
-                            item,
-                            style: TextStyle(
-                              fontSize: 20,
-                              color: Colors.black.withOpacity(0.75),
-                            ),
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                        ))
+                                  value: item,
+                                  child: Text(
+                                    item,
+                                    style: TextStyle(
+                                      fontSize: 20,
+                                      color: Colors.black.withOpacity(0.75),
+                                    ),
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                ))
                             .toList(),
                         value: selectedValue,
                         onChanged: (String? value) {
@@ -237,7 +236,7 @@ class _PersonalDetailsSchoolPageState extends State<PersonalDetailsSchoolPage> {
                             radius: const Radius.circular(40),
                             thickness: MaterialStateProperty.all<double>(6),
                             thumbVisibility:
-                            MaterialStateProperty.all<bool>(true),
+                                MaterialStateProperty.all<bool>(true),
                           ),
                         ),
                         menuItemStyleData: const MenuItemStyleData(
@@ -255,12 +254,7 @@ class _PersonalDetailsSchoolPageState extends State<PersonalDetailsSchoolPage> {
             padding: const EdgeInsets.only(right: 37, bottom: 45),
             child: Align(
               child: IconButton(
-                onPressed: (){
-
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (_) => UniversityDormsPage()));
-
-                },
+                onPressed: (){},
                 iconSize: 33,
                 icon: Image.asset(
                   AssetPath.continueIcon,

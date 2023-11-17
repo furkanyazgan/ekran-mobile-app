@@ -1,7 +1,7 @@
 import 'package:ekran/constants/asset_paths.dart';
-import 'package:ekran/screens/signup_and_login_screens/personal_details_page.dart';
-import 'package:ekran/screens/signup_and_login_screens/personal_details_school_page.dart';
-import 'package:ekran/widgets/custombutton.dart';
+import 'package:ekran/ui/screens/signup_and_login_screens/personal_details_page.dart';
+import 'package:ekran/ui/screens/signup_and_login_screens/personal_details_school_page.dart';
+import 'package:ekran/ui/widgets/custombutton.dart';
 import 'package:flutter/material.dart';
 import 'package:ekran/constants/project_themes.dart';
 import 'package:ekran/constants/text_styles.dart';

@@ -1,8 +1,8 @@
 import 'package:ekran/constants/asset_paths.dart';
 import 'package:ekran/constants/project_themes.dart';
-import 'package:ekran/screens/signup_and_login_screens/login_page.dart';
-import 'package:ekran/screens/signup_and_login_screens/university_or_around.dart';
-import 'package:ekran/widgets/custombutton.dart';
+import 'package:ekran/ui/screens/signup_and_login_screens/login_page.dart';
+import 'package:ekran/ui/screens/signup_and_login_screens/university_or_around.dart';
+import 'package:ekran/ui/widgets/custombutton.dart';
 import 'package:flutter/material.dart';
 
 class StartMainPage extends StatelessWidget {
