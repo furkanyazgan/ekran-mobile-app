@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 class ProjectTheme extends ThemeExtension<ProjectTheme> {
   const ProjectTheme({
     required this.mainColor,
+    required this.backButtonColor,
     required this.buttonSelectColor,
     required this.scaffoldBackgroundColor,
     required this.sectionBackgroundColor,
@@ -25,6 +26,7 @@ class ProjectTheme extends ThemeExtension<ProjectTheme> {
   });
 
   final Color? mainColor;
+  final Color? backButtonColor;
   final Color? scaffoldBackgroundColor;
   final Color? sectionBackgroundColor;
   final Color? buttonSelectColor;
@@ -47,6 +49,7 @@ class ProjectTheme extends ThemeExtension<ProjectTheme> {
   @override
   ProjectTheme copyWith({
     Color? mainColor,
+    Color? backButtonColor,
     Color? scaffoldBackgroundColor,
     Color? sectionBackgroundColor,
     Color? buttonSelectColor,
@@ -68,6 +71,7 @@ class ProjectTheme extends ThemeExtension<ProjectTheme> {
   }) {
     return ProjectTheme(
       mainColor: mainColor ?? this.mainColor,
+      backButtonColor: backButtonColor ?? this.backButtonColor,
       scaffoldBackgroundColor:
           scaffoldBackgroundColor ?? this.scaffoldBackgroundColor,
       sectionBackgroundColor:
@@ -96,6 +100,7 @@ class ProjectTheme extends ThemeExtension<ProjectTheme> {
   // the light theme
   static const light = ProjectTheme(
     mainColor: Color(0xFF6650FD),
+    backButtonColor: Color(0xffFFF73D),
     scaffoldBackgroundColor: Color(0xFFFAFAFA),
     sectionBackgroundColor: Color(0xFFFFFFFF),
     buttonSelectColor: Color(0xFFE7A707),
@@ -127,6 +132,7 @@ class ProjectTheme extends ThemeExtension<ProjectTheme> {
 
     return ProjectTheme(
       mainColor: Color.lerp(mainColor, other.mainColor, t),
+      backButtonColor: Color.lerp(backButtonColor, other.backButtonColor, t),
       scaffoldBackgroundColor:
           Color.lerp(scaffoldBackgroundColor, other.scaffoldBackgroundColor, t),
       sectionBackgroundColor:
