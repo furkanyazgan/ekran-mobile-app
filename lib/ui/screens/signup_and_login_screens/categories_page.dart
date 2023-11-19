@@ -1,6 +1,8 @@
 import 'package:ekran/constants/asset_paths.dart';
+import 'package:ekran/ui/screens/signup_and_login_screens/category_description_page.dart';
 import 'package:ekran/ui/widgets/custom_scaffold.dart';
 import 'package:ekran/ui/widgets/custombutton.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ekran/constants/project_themes.dart';
 import 'package:ekran/constants/text_styles.dart';
@@ -14,15 +16,16 @@ class CategoriesPage extends StatefulWidget {
 }
 
 class _CategoriesPageState extends State<CategoriesPage> {
-  List<String> categoriesList = [
-    "Photographs",
-    "Music",
-    "Horoscope",
-    "Personality Questions",
-    "Movies and TV Series",
-    "Hobbies",
-    "Logic Question",
-  ];
+  // <Category,Description>Map
+  Map<String, String?> categoriesMap = {
+    "Photographs": null,
+    "Music": null,
+    "Horoscope": null,
+    "Personality Questions": "Personality questions description",
+    "Movies and TV Series": null,
+    "Hobbies": null,
+    "Logic Question": "Logic questoins description",
+  };
 
   @override
   Widget build(BuildContext context) {
@@ -63,7 +66,7 @@ class _CategoriesPageState extends State<CategoriesPage> {
                           color: Colors.white),
                     ),
                     TextSpan(
-                      text: "4  ",
+                      text: "4 ",
                       style: TextStyle(
                           fontSize: 16.sp,
                           fontWeight: FontWeight.w400,
@@ -92,14 +95,22 @@ class _CategoriesPageState extends State<CategoriesPage> {
                     children: [
                       CustomButton(
                           child: Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 20.w),
+                              padding: EdgeInsets.only(left: 20.w),
                               child: Row(
                                 children: [
                                   Text(
-                                    categoriesList[index].toString(),
+                                    categoriesMap.keys
+                                        .elementAt(index)
+                                        .toString(),
                                     style: TextStyles.getButtonTextStyle(),
                                   ),
-                                  Spacer()
+                                  Spacer(),
+                                  _infoButtonCreator(
+                                      categoriText:
+                                          categoriesMap.keys.elementAt(index),
+                                      descriptionText: categoriesMap.values
+                                          .elementAt(index)),
+                                  7.horizontalSpace
                                 ],
                               )),
                           height: 53.h,
@@ -111,11 +122,33 @@ class _CategoriesPageState extends State<CategoriesPage> {
                     ],
                   );
                 },
-                itemCount: categoriesList.length,
+                itemCount: categoriesMap.length,
               ),
             ),
             116.verticalSpace
           ],
         ));
+  }
+
+  Widget _infoButtonCreator({String? categoriText, String? descriptionText}) {
+    return descriptionText != null
+        ? IconButton(
+            alignment: Alignment.topRight,
+            padding: EdgeInsets.zero,
+            onPressed: () {
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (_) => CategoryDescriptionPage(
+                      categoryText: categoriText!,
+                      descriptionText: descriptionText!)));
+            },
+            iconSize: 30.w,
+            icon: Center(
+              child: Image.asset(
+                AssetPath.infoIcon,
+                width: 30.w,
+              ),
+            ),
+          )
+        : SizedBox();
   }
 }

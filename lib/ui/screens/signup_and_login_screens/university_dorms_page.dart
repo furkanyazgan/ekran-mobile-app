@@ -1,4 +1,5 @@
 import 'package:ekran/constants/asset_paths.dart';
+import 'package:ekran/ui/widgets/custom_rating_bar.dart';
 import 'package:ekran/ui/widgets/custom_scaffold.dart';
 import 'package:ekran/ui/widgets/custombutton.dart';
 import 'package:flutter/material.dart';
@@ -26,6 +27,7 @@ class UniversityDormsPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             78.verticalSpace,
+
             CustomButton(
                 child: Row(
                   children: [

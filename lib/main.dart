@@ -1,9 +1,13 @@
 import 'package:ekran/constants/project_themes.dart';
 import 'package:ekran/constants/text_styles.dart';
 import 'package:ekran/ui/screens/signup_and_login_screens/categories_page.dart';
+import 'package:ekran/ui/screens/signup_and_login_screens/category_description_page.dart';
+import 'package:ekran/ui/screens/signup_and_login_screens/connection_type_facetoface_page.dart';
+import 'package:ekran/ui/screens/signup_and_login_screens/connection_type_page.dart';
 import 'package:ekran/ui/screens/signup_and_login_screens/login_page.dart';
 import 'package:ekran/ui/screens/signup_and_login_screens/personal_details_page.dart';
 import 'package:ekran/ui/screens/signup_and_login_screens/personal_details_school_page.dart';
+import 'package:ekran/ui/screens/signup_and_login_screens/personality_questions_page.dart';
 import 'package:ekran/ui/screens/signup_and_login_screens/preferred_gender_connect_page.dart';
 import 'package:ekran/ui/screens/signup_and_login_screens/start_main_page.dart';
 import 'package:ekran/ui/screens/signup_and_login_screens/university_dorms_page.dart';
@@ -40,7 +44,7 @@ class MyApp extends StatelessWidget {
           home: child,
         );
       },
-      child: CategoriesPage(),
+      child: PersonalityQuestionsPage(),
     );
   }
 }
