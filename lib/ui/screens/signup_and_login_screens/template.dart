@@ -2,15 +2,27 @@ import 'package:ekran/constants/asset_paths.dart';
 import 'package:ekran/ui/widgets/custombutton.dart';
 import 'package:flutter/material.dart';
 import 'package:ekran/constants/project_themes.dart';
+import 'package:ekran/constants/text_styles.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({Key? key}) : super(key: key);
+class CategoriesPage extends StatefulWidget {
+  const CategoriesPage({Key? key}) : super(key: key);
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<CategoriesPage> createState() => _CategoriesPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _CategoriesPageState extends State<CategoriesPage> {
+  List<String> categoriesList = [
+    "Photographs",
+    "Music",
+    "Horoscope",
+    "Personality Questions",
+    "Movies and TV Series",
+    "Hobbies",
+    "Logic Question",
+  ];
+
+
   @override
   Widget build(BuildContext context) {
     final themeProjectColors = Theme.of(context).extension<ProjectTheme>()!;
@@ -47,7 +59,7 @@ class _LoginPageState extends State<LoginPage> {
                   flex: 2,
                 ),
                 Text(
-                  "Log In",
+                  "Preferred Categories",
                   textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 32, color: Colors.white),
                 ),
@@ -67,85 +79,34 @@ class _LoginPageState extends State<LoginPage> {
                       topRight: Radius.circular(25))),
               height: MediaQuery.sizeOf(context).height * 0.69,
               width: double.infinity,
-              child: Padding(
-                padding: EdgeInsets.symmetric(vertical: 32, horizontal: 37),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(left: 8, bottom: 10),
-                      child: Text(
-                        "Email:",
-                        style:
-                        TextStyle(fontSize: 24, color: Color(0xff7e8086)),
-                      ),
-                    ),
-                    TextFormField(
-                      style: TextStyle(fontSize: 22),
-                      decoration: InputDecoration(
-                          filled: true,
-                          contentPadding: EdgeInsets.symmetric(
-                              horizontal: 25, vertical: 10),
-                          fillColor: Color(0xfff5f5f5),
-                          enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.transparent),
-                              borderRadius:
-                              BorderRadius.all(Radius.circular(10))),
-                          focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.transparent),
-                              borderRadius:
-                              BorderRadius.all(Radius.circular(10)))),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(10),
-                      child: Text(
-                        "Password:",
-                        style:
-                        TextStyle(fontSize: 24, color: Color(0xff7e8086)),
-                      ),
-                    ),
-                    TextFormField(
-                      style: TextStyle(fontSize: 22),
-                      decoration: InputDecoration(
-                          filled: true,
-                          contentPadding: EdgeInsets.symmetric(
-                              horizontal: 25, vertical: 10),
-                          fillColor: Color(0xfff5f5f5),
-                          enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.transparent),
-                              borderRadius:
-                              BorderRadius.all(Radius.circular(10))),
-                          focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.transparent),
-                              borderRadius:
-                              BorderRadius.all(Radius.circular(10)))),
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    TextButton(
-                      onPressed: () {},
-                      child: Text(
-                        "Forgot Password?",
-                        style: TextStyle(
-                            fontSize: 16, color: themeProjectColors.mainColor),
-                      ),
-                    ),
-                    Spacer(),
-                    Center(
-                      child: CustomButton(
-                          child: Text(
-                            "Start Connecting Now!",
-                            style: TextStyle(color: Colors.white, fontSize: 24),
-                          ),
-                          width: 294,
-                          height: 54,
-                          color: Color(0xff20AFB5),
-                          onTap: () {}),
-                    ),
-                    SizedBox(height: 30,)
-                  ],
-                ),
+              child: Center(
+                child: Padding(
+                    padding: const EdgeInsets.only(top:40 ),
+                    child: ListView.builder(
+                      itemBuilder: (context, index) {
+                        return Padding(
+                          padding: EdgeInsets.only(left: 30,right: 30,bottom: 19),
+                          child: CustomButton(
+                              child: Padding(
+                                  padding: EdgeInsets.symmetric(horizontal: 20),
+                                  child: Row(
+                                    children: [
+                                      Text(
+                                        categoriesList[index].toString(),
+                                        style: TextStyles.buttonTextStyle,
+                                      ),
+                                      Spacer()
+                                    ],
+                                  )),
+                              height: 53,
+                              color: Color(0xff7acfd3),
+                              animationColor: Color(0xff21AFB5),
+                              borderRadius: 10,
+                              onTap: () {}),
+                        );
+                      },
+                      itemCount: categoriesList.length,
+                    )),
               ),
             ),
           )

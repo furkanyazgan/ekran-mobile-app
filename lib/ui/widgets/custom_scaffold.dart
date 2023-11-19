@@ -34,9 +34,11 @@ class CustomScaffold extends StatelessWidget {
           Visibility(
             visible: showBackButton,
             child: Padding(
-              padding: EdgeInsets.only(left: 14.w, top: 65.h),
+              padding: EdgeInsets.only(left: 24.w, top: 75.h),
               child: Align(
                 child: IconButton(
+                  alignment: Alignment.topLeft,
+                  padding: EdgeInsets.zero,
                   onPressed: null,
                   iconSize: 33.w,
                   icon: Transform.rotate(
@@ -44,7 +46,7 @@ class CustomScaffold extends StatelessWidget {
                     child: Image.asset(
                       AssetPath.continueIcon,
                       color: themeProjectColors.backButtonColor,
-                      width: 43.w,
+                      width: 33.w,
                     ),
                   ),
                 ),
@@ -104,10 +106,13 @@ class CustomScaffold extends StatelessWidget {
           ),
           Visibility(
             visible: showContinueButton,
-            child: Padding(
-              padding: EdgeInsets.only(right: 37.w, bottom: 45.h),
-              child: Align(
+            child: Align(
+              alignment: Alignment.bottomRight,
+              child: Padding(
+                padding: EdgeInsets.only(right: 38.w, bottom: 45.h),
                 child: IconButton(
+                  alignment: Alignment.topRight,
+                  padding: EdgeInsets.zero,
                   onPressed: continueButtonPress,
                   iconSize: 33.w,
                   icon: Image.asset(
@@ -116,7 +121,6 @@ class CustomScaffold extends StatelessWidget {
                     width: 33.w,
                   ),
                 ),
-                alignment: Alignment.bottomRight,
               ),
             ),
           )

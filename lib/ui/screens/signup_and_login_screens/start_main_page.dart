@@ -4,6 +4,7 @@ import 'package:ekran/ui/screens/signup_and_login_screens/login_page.dart';
 import 'package:ekran/ui/screens/signup_and_login_screens/university_or_around.dart';
 import 'package:ekran/ui/widgets/custombutton.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class StartMainPage extends StatelessWidget {
   const StartMainPage({Key? key}) : super(key: key);
@@ -16,72 +17,57 @@ class StartMainPage extends StatelessWidget {
       body: Center(
         child: Stack(
           children: [
-            Padding(
-              padding: EdgeInsets.only(top: 115),
-              child: Wrap(
-                children: [
-                  Opacity(
-                    opacity: 0.25,
-                    child: Image.asset(
-                      AssetPath.userIcon2,
-                      width: MediaQuery.sizeOf(context).width,
-                      fit: BoxFit.cover,
-                      color: Color(0xFFF5F5F5),
-                    ),
-                  )
-                ],
-              ),
-            ),
-            Center(
-              child: Column(
-                children: [
-                  Spacer(
-                    flex: 5,
-                  ),
-                  Image.asset(
-                    AssetPath.ekranLogo,
-                    width: 129,
-                    height: 37,
-                  ),
-                  Spacer(
-                    flex: 2,
-                  ),
-                  Text(
-                    "Lets get started!",
-                    style: TextStyle(fontSize: 32, color: Colors.white),
-                  ),
-                  Spacer(
-                    flex: 45,
-                  )
-                ],
-              ),
+            Wrap(
+              children: [
+                Column(
+                  children: [
+                    115.verticalSpace,
+                    Opacity(
+                      opacity: 0.25,
+                      child: Image.asset(
+                        AssetPath.userIcon2,
+                        fit: BoxFit.cover,
+                        color: Color(0xFFF5F5F5),
+                      ),
+                    )
+
+                  ],
+                )
+              ],
             ),
             Center(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Spacer(
-                    flex: 45,
+                  72.verticalSpace,
+                  Image.asset(
+                    AssetPath.ekranLogo,
+                    width: 129.w,
+
                   ),
+                  40.verticalSpace,
+                  Text(
+                    "Lets get started!",
+                    style: TextStyle(fontSize: 32.sp, color: Colors.white),
+                  ),
+                  Spacer(),
                   CustomButton(
                       child: Text(
                         "Sign Up",
-                        style: TextStyle(color: Colors.white, fontSize: 28),
+                        style: TextStyle(color: Colors.white, fontSize: 28.sp),
                       ),
                       color: Color(0xff20AFB5),
-                      width: 294,
-                      height: 59,
+                      width: 294.w,
+                      height: 59.h,
                       onTap: () {
                         Navigator.of(context).push(MaterialPageRoute(
                             builder: (_) => UniversityOrAroundPage()));
                       }),
-                  Spacer(
-                    flex: 1,
-                  ),
+                  20.verticalSpace,
                   TextButton(
                       onPressed: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (_) => LoginPage()));
+                        Navigator.of(context).push(
+                            MaterialPageRoute(builder: (_) => LoginPage()));
                       },
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -90,7 +76,7 @@ class StartMainPage extends StatelessWidget {
                             "Already have an account?",
                             style: TextStyle(
                               color: Colors.white,
-                              fontSize: 16,
+                              fontSize: 16.sp,
                             ),
                           ),
                           Text(
@@ -99,13 +85,11 @@ class StartMainPage extends StatelessWidget {
                           )
                         ],
                       )),
-                  Spacer(
-                    flex: 6,
-                  ),
+                  85.verticalSpace,
                 ],
               ),
-            )
-          ],
+            ),
+           ],
         ),
       ),
     );

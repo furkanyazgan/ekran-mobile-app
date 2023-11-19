@@ -29,56 +29,69 @@ class _LoginPageState extends State<LoginPage> {
           children: [
             32.verticalSpace,
             Padding(
-              padding:  EdgeInsets.only(left: 5.w, bottom: 17.h),
+              padding: EdgeInsets.only(
+                left: 5.w,
+              ),
               child: Text(
                 "Email:",
                 style: TextStyle(fontSize: 24.sp, color: Color(0xff7e8086)),
               ),
             ),
-            TextFormField(
-              style: TextStyle(fontSize: 22.sp),
-              decoration: InputDecoration(
-                  filled: true,
-                  contentPadding:
-                      EdgeInsets.symmetric(horizontal: 25.w, vertical: 10.h),
-                  fillColor: Color(0xfff5f5f5),
-                  enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.transparent),
-                      borderRadius: BorderRadius.all(Radius.circular(10.r))),
-                  focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.transparent),
-                      borderRadius: BorderRadius.all(Radius.circular(10.r)))),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(10),
-              child: Text(
-                "Password:",
-                style: TextStyle(fontSize: 24, color: Color(0xff7e8086)),
+            17.verticalSpace,
+            SizedBox(
+              height: 43.h,
+              child: TextFormField(
+                style: TextStyle(fontSize: 22.sp),
+                decoration: InputDecoration(
+                    filled: true,
+                    contentPadding:
+                        EdgeInsets.symmetric(horizontal: 25.w, vertical: 10.h),
+                    fillColor: Color(0xfff5f5f5),
+                    enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.transparent),
+                        borderRadius: BorderRadius.all(Radius.circular(10.r))),
+                    focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.transparent),
+                        borderRadius: BorderRadius.all(Radius.circular(10.r)))),
               ),
             ),
-            TextFormField(
-              style: TextStyle(fontSize: 22),
-              decoration: InputDecoration(
-                  filled: true,
-                  contentPadding:
-                      EdgeInsets.symmetric(horizontal: 25, vertical: 10),
-                  fillColor: Color(0xfff5f5f5),
-                  enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.transparent),
-                      borderRadius: BorderRadius.all(Radius.circular(10))),
-                  focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.transparent),
-                      borderRadius: BorderRadius.all(Radius.circular(10)))),
+            17.verticalSpace,
+            Padding(
+              padding: EdgeInsets.only(
+                left: 5.w,
+              ),
+              child: Text(
+                "Password:",
+                style: TextStyle(fontSize: 24.sp, color: Color(0xff7e8086)),
+              ),
             ),
+            17.verticalSpace,
             SizedBox(
-              height: 10,
+              height: 43.h,
+              child: TextFormField(
+                style: TextStyle(fontSize: 22.sp),
+                decoration: InputDecoration(
+                    filled: true,
+                    contentPadding:
+                        EdgeInsets.symmetric(horizontal: 25.w, vertical: 10.h),
+                    fillColor: Color(0xfff5f5f5),
+                    enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.transparent),
+                        borderRadius: BorderRadius.all(Radius.circular(10.r))),
+                    focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.transparent),
+                        borderRadius: BorderRadius.all(Radius.circular(10.r)))),
+              ),
             ),
+            8.verticalSpace,
             TextButton(
               onPressed: () {},
               child: Text(
                 "Forgot Password?",
                 style: TextStyle(
-                    fontSize: 16.sp,fontWeight: FontWeight.w500, color: Color(0xff9d8ffe)),
+                    fontSize: 16.sp,
+                    fontWeight: FontWeight.w500,
+                    color: Color(0xff9d8ffe)),
               ),
             ),
             Spacer(),
@@ -86,7 +99,10 @@ class _LoginPageState extends State<LoginPage> {
               child: CustomButton(
                   child: Text(
                     "Start Connecting Now!",
-                    style: TextStyle(color: Colors.white, fontSize: 24.sp,fontWeight: FontWeight.w700),
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 24.sp,
+                        fontWeight: FontWeight.w700),
                   ),
                   width: 294.w,
                   height: 54.h,
