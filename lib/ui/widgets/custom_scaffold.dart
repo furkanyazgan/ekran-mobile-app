@@ -111,7 +111,7 @@ class CustomScaffold extends StatelessWidget {
               child: Padding(
                 padding: EdgeInsets.only(right: 38.w, bottom: 45.h),
                 child: IconButton(
-                  alignment: Alignment.topRight,
+                  alignment: Alignment.bottomRight,
                   padding: EdgeInsets.zero,
                   onPressed: continueButtonPress,
                   iconSize: 33.w,
