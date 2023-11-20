@@ -17,6 +17,7 @@ class LogicQuestionsPage extends StatefulWidget {
 }
 
 class _LogicQuestionsPageState extends State<LogicQuestionsPage> {
+
   Map<String, String?> questionsMap = {
     "Waste them": "A",
     "Invest them": "B",
