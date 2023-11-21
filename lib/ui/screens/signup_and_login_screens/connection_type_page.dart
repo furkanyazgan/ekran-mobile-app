@@ -1,6 +1,6 @@
 import 'package:ekran/constants/asset_paths.dart';
 import 'package:ekran/ui/screens/signup_and_login_screens/categories_page.dart';
-import 'package:ekran/ui/screens/signup_and_login_screens/personal_details_page.dart';
+import 'package:ekran/ui/views/auth/signup/personal/personal_details_page.dart';
 import 'package:ekran/ui/screens/signup_and_login_screens/personal_details_school_page.dart';
 import 'package:ekran/ui/widgets/custom_scaffold.dart';
 import 'package:ekran/ui/widgets/custombutton.dart';

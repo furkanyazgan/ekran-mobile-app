@@ -7,7 +7,7 @@ import 'package:ekran/ui/screens/signup_and_login_screens/connection_type_faceto
 import 'package:ekran/ui/screens/signup_and_login_screens/connection_type_page.dart';
 import 'package:ekran/ui/screens/signup_and_login_screens/logic_questions.dart';
 import 'package:ekran/ui/screens/signup_and_login_screens/login_page.dart';
-import 'package:ekran/ui/screens/signup_and_login_screens/personal_details_page.dart';
+import 'package:ekran/ui/views/auth/signup/personal/personal_details_page.dart';
 import 'package:ekran/ui/screens/signup_and_login_screens/personal_details_school_page.dart';
 import 'package:ekran/ui/screens/signup_and_login_screens/personality_questions_page.dart';
 import 'package:ekran/ui/screens/signup_and_login_screens/preferred_gender_connect_page.dart';
@@ -48,7 +48,7 @@ class MyApp extends StatelessWidget {
         );
       },
       child: Scaffold(
-        body: CategoryDetailsPage(),
+        body: StartMainPage(),
       ),
     );
   }
