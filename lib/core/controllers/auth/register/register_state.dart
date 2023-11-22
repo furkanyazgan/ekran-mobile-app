@@ -2,6 +2,8 @@ import 'package:ekran/core/controllers/auth/block_status.dart';
 import 'package:equatable/equatable.dart';
 
 class RegisterState extends Equatable {
+  final bool buttonClick;
+
   final String firstName;
 
   bool get isValidFirstName => firstName.length > 3;
@@ -12,22 +14,24 @@ class RegisterState extends Equatable {
 
   final String email;
 
-  bool get isValidEmail => firstName.length > 3;
+  bool get isValidEmail => email.length > 3;
 
   final String password;
 
-  bool get isValidPassword => lastName.length > 3;
+  bool get isValidPassword => password.length > 3;
 
   final AppSubmissionStatus formStatus;
 
   const RegisterState(
-      {this.firstName = "",
+      {this.buttonClick = false,
+      this.firstName = "",
       this.lastName = "",
       this.email = "",
       this.password = "",
       this.formStatus = const InitialStatus()});
 
   RegisterState copyWith({
+    bool? buttonClick,
     String? firstName,
     String? lastName,
     String? email,
@@ -35,6 +39,7 @@ class RegisterState extends Equatable {
     AppSubmissionStatus? formStatus,
   }) {
     return RegisterState(
+        buttonClick: buttonClick ?? this.buttonClick,
         firstName: firstName ?? this.firstName,
         lastName: lastName ?? this.lastName,
         email: email ?? this.email,
@@ -43,5 +48,6 @@ class RegisterState extends Equatable {
   }
 
   @override
-  List<Object> get props => [firstName , lastName ,email,password ,formStatus];
+  List<Object> get props =>
+      [buttonClick, firstName, lastName, email, password, formStatus];
 }

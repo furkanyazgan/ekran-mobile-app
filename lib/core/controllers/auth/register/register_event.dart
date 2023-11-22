@@ -1,3 +1,4 @@
+import 'package:ekran/core/controllers/auth/block_status.dart';
 import 'package:equatable/equatable.dart';
 
 abstract class RegisterEvent extends Equatable {}
@@ -36,6 +37,22 @@ class RegisterPasswordChanged extends RegisterEvent {
 
   @override
   List<Object?> get props => [password];
+}
+
+class RegisterButtonClick extends RegisterEvent {
+
+
+  @override
+  List<Object?> get props => [ ];
+}
+
+class RegisterFormStatusChanged extends RegisterEvent {
+  final AppSubmissionStatus? formStatus;
+
+  RegisterFormStatusChanged({this.formStatus});
+
+  @override
+  List<Object?> get props => [formStatus];
 }
 
 class RegisterSubmitted extends RegisterEvent {

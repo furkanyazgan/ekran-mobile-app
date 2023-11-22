@@ -8,14 +8,14 @@ class InitialStatus extends AppSubmissionStatus {
 
 class FormSubmitting extends AppSubmissionStatus {}
 
+class FormValidationError extends AppSubmissionStatus {}
+
 class SubmissionLoading extends AppSubmissionStatus {}
 
 class SubmissionSuccess extends AppSubmissionStatus {
   const SubmissionSuccess();
 }
 
-class SubmissionFailed extends AppSubmissionStatus {
-  final Object exception;
+class SubmissionFailed extends AppSubmissionStatus {}
 
-  SubmissionFailed(this.exception);
-}
+class EmailUsedFailed extends AppSubmissionStatus {}

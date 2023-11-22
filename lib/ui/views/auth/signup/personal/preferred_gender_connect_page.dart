@@ -1,9 +1,11 @@
 import 'package:ekran/constants/asset_paths.dart';
+import 'package:ekran/core/controllers/auth/auth_cubit.dart';
 import 'package:ekran/ui/widgets/custom_scaffold.dart';
 import 'package:ekran/ui/widgets/custombutton.dart';
 import 'package:flutter/material.dart';
 import 'package:ekran/constants/project_themes.dart';
 import 'package:ekran/constants/text_styles.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class PreferredGenderConnectPage extends StatelessWidget {
@@ -13,11 +15,15 @@ class PreferredGenderConnectPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final themeProjectColors = Theme.of(context).extension<ProjectTheme>()!;
     return CustomScaffold(
+      showContinueButton: false,
+      backButtonPress: () {
+        print("back");
+        context.read<AuthCubit>().showSignUp();
+      },
       titleWidget: Text(
         "Preferred Gender \nTo Connect With",
         textAlign: TextAlign.center,
-        style: TextStyle(
-            fontSize: 32.sp, fontWeight: FontWeight.w700, color: Colors.white),
+        style: TextStyle(fontSize: 32.sp, fontWeight: FontWeight.w700, color: Colors.white),
       ),
       bodyWidget: Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -40,7 +46,11 @@ class PreferredGenderConnectPage extends StatelessWidget {
               color: Color(0xff7acfd3),
               animationColor: Color(0xff21AFB5),
               borderRadius: 10.r,
-              onTap: () {}),
+              onTap: () {
+                context.read<AuthCubit>().credentials =
+                    context.read<AuthCubit>().credentials.copyWith(preferredGender: "MALE");
+                context.read<AuthCubit>().showConnectionType();
+              }),
           22.verticalSpace,
           CustomButton(
               child: Padding(
@@ -58,7 +68,11 @@ class PreferredGenderConnectPage extends StatelessWidget {
               color: Color(0xff7acfd3),
               animationColor: Color(0xff21AFB5),
               borderRadius: 10.r,
-              onTap: () {}),
+              onTap: () {
+                context.read<AuthCubit>().credentials =
+                    context.read<AuthCubit>().credentials.copyWith(preferredGender: "FEMALE");
+                context.read<AuthCubit>().showConnectionType();
+              }),
           22.verticalSpace,
           CustomButton(
               child: Padding(
@@ -76,7 +90,11 @@ class PreferredGenderConnectPage extends StatelessWidget {
               color: Color(0xff7acfd3),
               animationColor: Color(0xff21AFB5),
               borderRadius: 10.r,
-              onTap: () {}),
+              onTap: () {
+                context.read<AuthCubit>().credentials =
+                    context.read<AuthCubit>().credentials.copyWith(preferredGender: "BOTH");
+                context.read<AuthCubit>().showConnectionType();
+              }),
         ],
       ),
     );

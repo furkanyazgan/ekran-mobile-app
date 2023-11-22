@@ -14,6 +14,7 @@ class CustomScaffold extends StatelessWidget {
       required this.bodyWidget,
       this.showContinueButton = true,
       this.continueButtonPress,
+      this.backButtonPress,
       this.showBackButton = true})
       : super(key: key);
 
@@ -21,6 +22,7 @@ class CustomScaffold extends StatelessWidget {
   Widget? bodyWidget;
   bool showContinueButton;
   VoidCallback? continueButtonPress;
+  VoidCallback? backButtonPress;
   bool showBackButton;
 
   @override
@@ -36,10 +38,11 @@ class CustomScaffold extends StatelessWidget {
             child: Padding(
               padding: EdgeInsets.only(left: 24.w, top: 75.h),
               child: Align(
+                alignment: Alignment.topLeft,
                 child: IconButton(
                   alignment: Alignment.topLeft,
                   padding: EdgeInsets.zero,
-                  onPressed: null,
+                  onPressed: backButtonPress,
                   iconSize: 33.w,
                   icon: Transform.rotate(
                     angle: 180 * pi / 180,
@@ -50,7 +53,6 @@ class CustomScaffold extends StatelessWidget {
                     ),
                   ),
                 ),
-                alignment: Alignment.topLeft,
               ),
             ),
           ),
@@ -91,9 +93,7 @@ class CustomScaffold extends StatelessWidget {
             child: Container(
               decoration: BoxDecoration(
                   color: Colors.white,
-                  borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(25.r),
-                      topRight: Radius.circular(25.r))),
+                  borderRadius: BorderRadius.only(topLeft: Radius.circular(25.r), topRight: Radius.circular(25.r))),
               height: 587.h,
               width: double.infinity,
               child: Padding(
