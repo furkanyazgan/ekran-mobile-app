@@ -7,8 +7,10 @@ import 'package:ekran/core/controllers/auth/register/personal_details/personal_d
 import 'package:ekran/core/controllers/auth/register/personal_details/personal_details_state.dart';
 
 import 'package:ekran/core/models/auth/auth_credentials.dart';
+import 'package:ekran/ui/views/auth/login/widgets/login_email_textformfield.dart';
 import 'package:ekran/ui/views/auth/signup/personal/widgets/circular_progress_indicator.dart';
 import 'package:ekran/ui/views/auth/signup/personal/widgets/email_textformfield.dart';
+
 import 'package:ekran/ui/views/auth/signup/personal/widgets/first_name_textformfield.dart';
 import 'package:ekran/ui/views/auth/signup/personal/widgets/gender_dropdown_button.dart';
 import 'package:ekran/ui/views/auth/signup/personal/widgets/last_name_textformfield.dart';
@@ -44,11 +46,19 @@ class _PersonalDetailsPageState extends State<PersonalDetailsPage> {
         }
         if (state.formStatus is SubmissionSuccess) {
           context.read<AuthCubit>().credentials = AuthCredentials(
-              name: state.firstName, surname: state.lastName, email: state.email, age: "18",gender: state.gender, password: state.password);
+              name: state.firstName,
+              surname: state.lastName,
+              email: state.email,
+              age: "18",
+              gender: state.gender,
+              password: state.password);
           context.read<AuthCubit>().showPreferredGenderConnect();
         }
       },
       child: CustomScaffold(
+        backButtonPress: () {
+          context.read<AuthCubit>().showUniversityOrAroundPage();
+        },
         titleWidget: Text(
           "Personal Details",
           textAlign: TextAlign.center,
@@ -107,8 +117,6 @@ class _PersonalDetailsPageState extends State<PersonalDetailsPage> {
           ),
         ),
         continueButtonPress: () {
-          context.read<PersonalDetailsBloc>().add(PersonalDetailsButtonClick());
-
           if (_formKey.currentState!.validate()) {
             context.read<PersonalDetailsBloc>().add(PersonalDetailsSubmitted());
           } else {

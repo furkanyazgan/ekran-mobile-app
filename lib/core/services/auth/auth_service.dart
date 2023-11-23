@@ -4,14 +4,25 @@ import 'dart:developer';
 import 'package:ekran/core/models/auth/auth_credentials.dart';
 import 'dart:convert' as convert;
 import "package:http/http.dart" as http;
-import 'package:requests/requests.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthService {
   final String baseUrl = "http://ekran-env-2.eba-cg8dvrqm.eu-north-1.elasticbeanstalk.com/api/v1/";
 
-  Future<dynamic> attemptAutoLogin() async{
-    await Future.delayed(Duration(seconds: 2));
-    return {"status":false};
+  Future signOut() async{
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.remove("authToken");
+  }
+
+  Future authSetUserToken({required String token}) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString("authToken", token.toString());
+  }
+
+  Future<String?> authGetUserToken() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? token = await prefs.getString("authToken");
+    return token;
   }
 
   Future<dynamic> registerPersonalUser({required AuthCredentials authCredentials}) async {
@@ -65,10 +76,15 @@ class AuthService {
     }
   }
 
-  Future<dynamic> loginPersonalUser({required AuthCredentials authCredentials}) async {
+  Future<dynamic> loginPersonalUser({AuthCredentials? authCredentials, String? email, String? password}) async {
+    if (authCredentials != null) {
+      email = authCredentials.email;
+      password = authCredentials.password;
+    }
+
     final uri = Uri.parse(baseUrl + "auth/app-user/authenticate");
     final headers = {'Content-Type': 'application/json'};
-    Map<String, dynamic> body = {"email": authCredentials.email, "password": authCredentials.password};
+    Map<String, dynamic> body = {"email": email, "password": password};
 
     String jsonBody = json.encode(body);
     final encoding = Encoding.getByName('utf-8');
@@ -93,15 +109,13 @@ class AuthService {
     }
   }
 
-  Future<dynamic> personalEmailDuplicateCheck({  AuthCredentials? authCredentials,String email = ""}) async {
-
+  Future<dynamic> personalEmailDuplicateCheck({AuthCredentials? authCredentials, String email = ""}) async {
     String temp_email = "";
-    if(authCredentials == null){
+    if (authCredentials == null) {
       temp_email = email;
-    }else{
+    } else {
       temp_email = authCredentials.email!;
     }
-
 
     final uri = Uri.parse(baseUrl + "auth/app-user/emails/${temp_email}");
     final headers = {'Content-Type': 'application/json'};
@@ -112,6 +126,7 @@ class AuthService {
         headers: headers,
       );
       var responseBody = json.decode(response.body);
+      print(responseBody);
       if (response.statusCode == 200) {
         if (responseBody["data"] == true) {
           return {"status": false, "message": "duplicate_email"};

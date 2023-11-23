@@ -18,7 +18,7 @@ class PreferredGenderConnectPage extends StatelessWidget {
       showContinueButton: false,
       backButtonPress: () {
         print("back");
-        context.read<AuthCubit>().showSignUp();
+        context.read<AuthCubit>().showSignUpPersonal();
       },
       titleWidget: Text(
         "Preferred Gender \nTo Connect With",

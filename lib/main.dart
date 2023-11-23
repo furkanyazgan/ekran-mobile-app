@@ -2,6 +2,7 @@ import 'package:ekran/app_navigator.dart';
 import 'package:ekran/constants/project_themes.dart';
 import 'package:ekran/constants/text_styles.dart';
 import 'package:ekran/core/controllers/auth/auth_cubit.dart';
+import 'package:ekran/core/controllers/auth/login/login_bloc.dart';
 import 'package:ekran/core/controllers/auth/register/personal_details/personal_details_block.dart';
 import 'package:ekran/core/controllers/session/session_cubit.dart';
 import 'package:flutter/material.dart';
@@ -20,9 +21,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
         providers: [
-          BlocProvider(create: (context) => PersonalDetailsBloc()),
           BlocProvider(create: (context) => SessionCubit()),
-          BlocProvider(create: (context) => AuthCubit())
+          BlocProvider(create: (context) => AuthCubit(sessionCubit: context.read<SessionCubit>())),
+          BlocProvider(create: (context) => PersonalDetailsBloc()),
+          BlocProvider(create: (context) => LoginBloc(authCubit: context.read<AuthCubit>())),
+
+
         ],
         child: ScreenUtilInit(
           designSize: const Size(393, 852),

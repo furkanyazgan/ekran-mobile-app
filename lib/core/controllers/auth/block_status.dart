@@ -16,6 +16,9 @@ class SubmissionSuccess extends AppSubmissionStatus {
   const SubmissionSuccess();
 }
 
-class SubmissionFailed extends AppSubmissionStatus {}
+class SubmissionFailed extends AppSubmissionStatus {
+  String? message;
+  SubmissionFailed({this.message = ""});
+}
 
 class EmailDuplicateFailed extends AppSubmissionStatus {}

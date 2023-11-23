@@ -2,6 +2,7 @@ import 'package:ekran/core/controllers/auth/block_status.dart';
 import 'package:equatable/equatable.dart';
 
 class PersonalDetailsState extends Equatable {
+
   final bool buttonClick;
 
   final String firstName;

@@ -1,7 +1,7 @@
 import 'package:ekran/core/controllers/session/session_state.dart';
 import 'package:ekran/core/services/auth/auth_service.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SessionCubit extends Cubit<SessionState> {
   final authService = AuthService();
@@ -10,28 +10,27 @@ class SessionCubit extends Cubit<SessionState> {
     attemptAutoLogin();
   }
 
-  void attemptAutoLogin(){
-    authService.attemptAutoLogin().then((value) {
-      if (value["status"]) {
-        emit(state.copyWith(authenticatStatus: AuthenticatStatuses.Authenticated));
-      } else {
-        emit(state.copyWith(authenticatStatus: AuthenticatStatuses.Unauthenticated));
-      }
-    });
+
+
+  void attemptAutoLogin() async {
+    String? token = await authService.authGetUserToken();
+    print(token);
+
+    if (token != null) {
+      emit(state.copyWith(authenticatStatus: AuthenticatStatuses.Authenticated));
+    } else {
+      emit(state.copyWith(authenticatStatus: AuthenticatStatuses.Unauthenticated));
+    }
   }
 
   void showAuth() => emit(state.copyWith(authenticatStatus: AuthenticatStatuses.Unauthenticated));
 
   void showSession() {
-    // AuthCredentials credentials***
-
-    // // final user = dataRepo.getUser(credentials.userId);
-    // final user = credentials.username;
     emit(state.copyWith(authenticatStatus: AuthenticatStatuses.Authenticated));
   }
 
-  void signOut() {
-    // authRepo.signOut();
+  void signOut() async {
+     await authService.signOut();
     emit(state.copyWith(authenticatStatus: AuthenticatStatuses.Unauthenticated));
   }
 }

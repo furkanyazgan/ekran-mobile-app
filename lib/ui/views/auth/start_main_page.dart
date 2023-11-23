@@ -1,9 +1,11 @@
 import 'package:ekran/constants/asset_paths.dart';
 import 'package:ekran/constants/project_themes.dart';
-import 'package:ekran/ui/screens/signup_and_login_screens/login_page.dart';
-import 'package:ekran/ui/screens/signup_and_login_screens/university_or_around.dart';
+import 'package:ekran/core/controllers/auth/auth_cubit.dart';
+import 'package:ekran/ui/views/auth/login/login_page.dart';
+import 'package:ekran/ui/views/auth/university_or_around.dart';
 import 'package:ekran/ui/widgets/custombutton.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class StartMainPage extends StatelessWidget {
@@ -30,7 +32,6 @@ class StartMainPage extends StatelessWidget {
                         color: Color(0xFFF5F5F5),
                       ),
                     )
-
                   ],
                 )
               ],
@@ -43,7 +44,6 @@ class StartMainPage extends StatelessWidget {
                   Image.asset(
                     AssetPath.ekranLogo,
                     width: 129.w,
-
                   ),
                   40.verticalSpace,
                   Text(
@@ -60,14 +60,12 @@ class StartMainPage extends StatelessWidget {
                       width: 294.w,
                       height: 59.h,
                       onTap: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (_) => UniversityOrAroundPage()));
+                        context.read<AuthCubit>().showUniversityOrAroundPage();
                       }),
                   20.verticalSpace,
                   TextButton(
                       onPressed: () {
-                        Navigator.of(context).push(
-                            MaterialPageRoute(builder: (_) => LoginPage()));
+                        context.read<AuthCubit>().showLoginPage();
                       },
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -89,7 +87,7 @@ class StartMainPage extends StatelessWidget {
                 ],
               ),
             ),
-           ],
+          ],
         ),
       ),
     );

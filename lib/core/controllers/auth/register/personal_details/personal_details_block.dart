@@ -31,7 +31,7 @@ class PersonalDetailsBloc extends Bloc<PersonalDetailsEvent, PersonalDetailsStat
       emit(state.copyWith(gender: event.gender));
     } else if (event is PersonalDetailsSubmitted) {
       emit(state.copyWith(formStatus: FormSubmitting()));
-      authService.personalEmailDuplicateCheck(email: state.email).then((value) {
+      await authService.personalEmailDuplicateCheck(email: state.email).then((value) {
         if (value["status"]) {
           emit(state.copyWith(formStatus: SubmissionSuccess()));
         } else {
