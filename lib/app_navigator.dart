@@ -15,9 +15,9 @@ class AppNavigator extends StatelessWidget {
     return BlocBuilder<SessionCubit, SessionState>(builder: (context, state) {
       return Navigator(
         pages: [
-          if (state is UnknownSessionState) MaterialPage(child: SplashPage()),
-          if (state is Unauthenticated) MaterialPage(child: AuthNavigator()),
-          if (state is Authenticated) MaterialPage(child: SessionPage()),
+          if (state.authenticatStatus == AuthenticatStatuses.UnknownSessionState) MaterialPage(child: SplashPage()),
+          if (state.authenticatStatus == AuthenticatStatuses.Unauthenticated) MaterialPage(child: AuthNavigator()),
+          if (state.authenticatStatus == AuthenticatStatuses.Authenticated) MaterialPage(child: SessionPage()),
         ],
         onPopPage: (route, result) => route.didPop(result),
       );

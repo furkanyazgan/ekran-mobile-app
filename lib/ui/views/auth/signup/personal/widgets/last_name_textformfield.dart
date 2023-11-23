@@ -1,6 +1,6 @@
-import 'package:ekran/core/controllers/auth/register/register_block.dart';
-import 'package:ekran/core/controllers/auth/register/register_event.dart';
-import 'package:ekran/core/controllers/auth/register/register_state.dart';
+import 'package:ekran/core/controllers/auth/register/personal_details/personal_details_block.dart';
+import 'package:ekran/core/controllers/auth/register/personal_details/personal_details_event.dart';
+import 'package:ekran/core/controllers/auth/register/personal_details/personal_details_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -10,11 +10,11 @@ class LastNameTextFormField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<RegisterBloc,RegisterState>(builder: (context, state) {
+    return BlocBuilder<PersonalDetailsBloc,PersonalDetailsState>(builder: (context, state) {
 
       return TextFormField(
         onChanged: (value){
-          context.read<RegisterBloc>().add(RegisterLastNameChanged(lastName: value));
+          context.read<PersonalDetailsBloc>().add(PersonalDetailsLastNameChanged(lastName: value));
         },
         validator: (value) => state.isValidLastName ? null : "last name hatalı",
         style: TextStyle(fontSize: 18.sp),

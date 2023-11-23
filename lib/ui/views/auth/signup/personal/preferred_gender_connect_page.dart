@@ -50,6 +50,7 @@ class PreferredGenderConnectPage extends StatelessWidget {
                 context.read<AuthCubit>().credentials =
                     context.read<AuthCubit>().credentials.copyWith(preferredGender: "MALE");
                 context.read<AuthCubit>().showConnectionType();
+                context.read<AuthCubit>().RegisterNewUser();
               }),
           22.verticalSpace,
           CustomButton(
@@ -72,6 +73,7 @@ class PreferredGenderConnectPage extends StatelessWidget {
                 context.read<AuthCubit>().credentials =
                     context.read<AuthCubit>().credentials.copyWith(preferredGender: "FEMALE");
                 context.read<AuthCubit>().showConnectionType();
+                context.read<AuthCubit>().RegisterNewUser();
               }),
           22.verticalSpace,
           CustomButton(
@@ -94,6 +96,7 @@ class PreferredGenderConnectPage extends StatelessWidget {
                 context.read<AuthCubit>().credentials =
                     context.read<AuthCubit>().credentials.copyWith(preferredGender: "BOTH");
                 context.read<AuthCubit>().showConnectionType();
+                context.read<AuthCubit>().RegisterNewUser();
               }),
         ],
       ),

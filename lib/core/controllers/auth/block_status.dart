@@ -18,4 +18,4 @@ class SubmissionSuccess extends AppSubmissionStatus {
 
 class SubmissionFailed extends AppSubmissionStatus {}
 
-class EmailUsedFailed extends AppSubmissionStatus {}
+class EmailDuplicateFailed extends AppSubmissionStatus {}

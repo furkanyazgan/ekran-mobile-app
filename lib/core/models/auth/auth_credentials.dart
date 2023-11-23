@@ -5,16 +5,18 @@ class AuthCredentials {
   final String? surname;
   final String? email;
   final String? age;
+  final String? gender;
   final String? preferredGender;
   final String? password;
 
-  AuthCredentials({this.name, this.surname, this.email, this.age, this.preferredGender, this.password});
+  AuthCredentials({this.name, this.surname, this.email, this.age,this.gender, this.preferredGender, this.password});
 
   AuthCredentials copyWith({
     String? name,
     String? surname,
     String? email,
     String? age,
+    String? gender,
     String? preferredGender,
     String? password,
   }) {
@@ -23,6 +25,7 @@ class AuthCredentials {
         surname: surname ?? this.surname,
         email: email ?? this.email,
         age: age ?? this.age,
+        gender: gender ?? this.gender,
         preferredGender: preferredGender ?? this.preferredGender,
         password: password ?? this.password);
   }

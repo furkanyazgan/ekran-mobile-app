@@ -2,13 +2,15 @@ import 'package:ekran/constants/asset_paths.dart';
 import 'package:ekran/constants/text_styles.dart';
 import 'package:ekran/core/controllers/auth/auth_cubit.dart';
 import 'package:ekran/core/controllers/auth/block_status.dart';
-import 'package:ekran/core/controllers/auth/register/register_block.dart';
-import 'package:ekran/core/controllers/auth/register/register_event.dart';
-import 'package:ekran/core/controllers/auth/register/register_state.dart';
+import 'package:ekran/core/controllers/auth/register/personal_details/personal_details_block.dart';
+import 'package:ekran/core/controllers/auth/register/personal_details/personal_details_event.dart';
+import 'package:ekran/core/controllers/auth/register/personal_details/personal_details_state.dart';
+
 import 'package:ekran/core/models/auth/auth_credentials.dart';
 import 'package:ekran/ui/views/auth/signup/personal/widgets/circular_progress_indicator.dart';
 import 'package:ekran/ui/views/auth/signup/personal/widgets/email_textformfield.dart';
 import 'package:ekran/ui/views/auth/signup/personal/widgets/first_name_textformfield.dart';
+import 'package:ekran/ui/views/auth/signup/personal/widgets/gender_dropdown_button.dart';
 import 'package:ekran/ui/views/auth/signup/personal/widgets/last_name_textformfield.dart';
 import 'package:ekran/ui/views/auth/signup/personal/widgets/password_textformfield.dart';
 import 'package:ekran/ui/widgets/custom_scaffold.dart';
@@ -29,22 +31,20 @@ class PersonalDetailsPage extends StatefulWidget {
 }
 
 class _PersonalDetailsPageState extends State<PersonalDetailsPage> {
-  final List<String> items = ["Male", "Female", "Other"];
-  String? selectedValue;
   final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
     final themeProjectColors = Theme.of(context).extension<ProjectTheme>()!;
-    return BlocListener<RegisterBloc, RegisterState>(
+    return BlocListener<PersonalDetailsBloc, PersonalDetailsState>(
       listenWhen: ((previous, current) => previous.formStatus != current.formStatus),
       listener: (context, state) {
-        if (state.formStatus is EmailUsedFailed) {
+        if (state.formStatus is EmailDuplicateFailed) {
           _showSnackBar(context, "This email address is already used");
         }
         if (state.formStatus is SubmissionSuccess) {
           context.read<AuthCubit>().credentials = AuthCredentials(
-              name: state.firstName, surname: state.lastName, email: state.email,age: "18", password: state.password);
+              name: state.firstName, surname: state.lastName, email: state.email, age: "18",gender: state.gender, password: state.password);
           context.read<AuthCubit>().showPreferredGenderConnect();
         }
       },
@@ -100,19 +100,21 @@ class _PersonalDetailsPageState extends State<PersonalDetailsPage> {
                 child: PasswordTextFormField(),
               ),
               28.verticalSpace,
-              buildDropdownButtonHideUnderline(),
+              GenderDropDownButton(),
               15.verticalSpace,
               CircularProgressIndicatorWidget(),
             ],
           ),
         ),
         continueButtonPress: () {
-          context.read<RegisterBloc>().add(RegisterButtonClick());
+          context.read<PersonalDetailsBloc>().add(PersonalDetailsButtonClick());
 
           if (_formKey.currentState!.validate()) {
-            context.read<RegisterBloc>().add(RegisterSubmitted());
+            context.read<PersonalDetailsBloc>().add(PersonalDetailsSubmitted());
           } else {
-            context.read<RegisterBloc>().add(RegisterFormStatusChanged(formStatus: FormValidationError()));
+            context
+                .read<PersonalDetailsBloc>()
+                .add(PersonalDetailsFormStatusChanged(formStatus: FormValidationError()));
           }
         },
       ),
@@ -122,79 +124,5 @@ class _PersonalDetailsPageState extends State<PersonalDetailsPage> {
   void _showSnackBar(BuildContext context, String message) {
     final snackBar = SnackBar(content: Text(message));
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
-  }
-
-  DropdownButtonHideUnderline buildDropdownButtonHideUnderline() {
-    return DropdownButtonHideUnderline(
-      child: DropdownButton2<String>(
-        isExpanded: true,
-        hint: Text(
-          'Gender',
-          style: TextStyle(fontSize: 20.sp, color: Color(0xff928e9a)),
-          overflow: TextOverflow.ellipsis,
-        ),
-        items: items
-            .map((String item) => DropdownMenuItem<String>(
-                  value: item,
-                  child: Text(
-                    item,
-                    style: TextStyle(
-                      fontSize: 20.sp,
-                      color: Colors.black.withOpacity(0.75),
-                    ),
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                ))
-            .toList(),
-        value: selectedValue,
-        onChanged: (String? value) {
-          setState(() {
-            selectedValue = value;
-          });
-        },
-        buttonStyleData: ButtonStyleData(
-          height: 48.h,
-          padding: EdgeInsets.only(right: 14.w),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(5.r),
-            border: Border.all(
-              color: Colors.black26,
-            ),
-            color: Colors.white,
-          ),
-        ),
-        iconStyleData: IconStyleData(
-          icon: Transform.rotate(
-            child: Icon(
-              Icons.arrow_back_ios_rounded,
-              size: 18.w,
-            ),
-            angle: -90 * pi / 180,
-          ),
-          openMenuIcon: Transform.rotate(
-            child: Icon(
-              Icons.arrow_back_ios_rounded,
-              size: 18.w,
-            ),
-            angle: 90 * pi / 180,
-          ),
-        ),
-        dropdownStyleData: DropdownStyleData(
-          elevation: 1,
-          maxHeight: 200.h,
-          decoration: BoxDecoration(borderRadius: BorderRadius.circular(5.r), color: Colors.white),
-          offset: const Offset(0, -5),
-          scrollbarTheme: ScrollbarThemeData(
-            radius: Radius.circular(40.r),
-            thickness: MaterialStateProperty.all<double>(6),
-            thumbVisibility: MaterialStateProperty.all<bool>(true),
-          ),
-        ),
-        menuItemStyleData: MenuItemStyleData(
-          height: 40.h,
-          padding: EdgeInsets.only(left: 14.w, right: 14.w),
-        ),
-      ),
-    );
   }
 }

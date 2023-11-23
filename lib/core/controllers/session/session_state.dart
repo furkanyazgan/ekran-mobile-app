@@ -1,13 +1,19 @@
+import 'package:ekran/core/models/auth/auth_credentials.dart';
 
+enum AuthenticatStatuses { UnknownSessionState, Unauthenticated, Authenticated }
 
-abstract class SessionState {}
+class SessionState {
+  AuthenticatStatuses authenticatStatus;
+  AuthCredentials? authCredentials;
 
-class UnknownSessionState extends SessionState {}
+  SessionState({
+    this.authenticatStatus = AuthenticatStatuses.UnknownSessionState,
+    this.authCredentials,
+  });
 
-class Unauthenticated extends SessionState {}
-
-class Authenticated extends SessionState {
-  final dynamic user;
-
-  Authenticated({required this.user});
+  SessionState copyWith({AuthenticatStatuses? authenticatStatus, AuthCredentials? authCredentials}) {
+    return SessionState(
+        authenticatStatus: authenticatStatus ?? this.authenticatStatus,
+        authCredentials: authCredentials ?? this.authCredentials);
+  }
 }
