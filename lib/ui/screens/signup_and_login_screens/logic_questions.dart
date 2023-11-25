@@ -69,7 +69,7 @@ class _LogicQuestionsPageState extends State<LogicQuestionsPage> {
                         ),
                       ),
                       height: 46.h,
-                      onTap: (value) {
+                      onTap: (value,_) {
                         setState(() {
                           selectedAnswer = value;
                           print(value);

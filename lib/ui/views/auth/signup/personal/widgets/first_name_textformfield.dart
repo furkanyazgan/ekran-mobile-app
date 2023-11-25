@@ -19,6 +19,7 @@ class FirstNameTextFormField extends StatelessWidget {
         children: [
           Expanded(
             child: TextFormField(
+  initialValue: state.firstName,
               key: _formFieldKey,
               onChanged: (value) {
                 context.read<PersonalDetailsBloc>().add(
@@ -28,9 +29,10 @@ class FirstNameTextFormField extends StatelessWidget {
               validator: (value) =>
               state.isValidFirstName
                   ? null
-                  : "isim hatalı",
+                  : "",
               style: TextStyle(fontSize: 18.sp),
               decoration: InputDecoration(
+                  errorStyle: const TextStyle(height: 0),
 
                   filled: true,
                   contentPadding:

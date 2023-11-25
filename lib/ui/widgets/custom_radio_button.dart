@@ -7,14 +7,14 @@ class CustomRadioButton extends StatefulWidget {
       this.width,
       required this.height,
       required this.onTap,
-        required this.value,
+      required this.value,
       required this.selectedColor,
       this.unSelectedColor,
       this.selectedButton = false,
       this.borderRadius = 20.0})
       : super(key: key);
 
-  Function(dynamic) onTap;
+  Function(dynamic, bool) onTap;
   Widget child;
   double? width;
   double height;
@@ -65,8 +65,9 @@ class _CustomRadioButtonState extends State<CustomRadioButton> {
           borderRadius: BorderRadius.circular(widget.borderRadius),
           onTap: () {
             setState(() {
-              widget.onTap(widget.value);
+
               widget.selectedButton = !widget.selectedButton;
+              widget.onTap(widget.value, widget.selectedButton);
             });
           },
           splashColor: splashColor,

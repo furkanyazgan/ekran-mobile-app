@@ -1,4 +1,5 @@
 import 'package:ekran/core/controllers/auth/auth_cubit.dart';
+import 'package:ekran/ui/views/auth/signup/personal/categories_page.dart';
 import 'package:ekran/ui/screens/signup_and_login_screens/university_dorms_page.dart';
 import 'package:ekran/ui/views/auth/login/login_page.dart';
 import 'package:ekran/ui/views/auth/signup/personal/connection_type_page.dart';
@@ -22,6 +23,7 @@ class AuthNavigator extends StatelessWidget {
           if (state == AuthState.signUpPersonal) MaterialPage(child: PersonalDetailsPage()),
           if (state == AuthState.preferredGenderConnect) MaterialPage(child: PreferredGenderConnectPage()),
           if (state == AuthState.connectionType) MaterialPage(child: ConnectionTypePage()),
+          if (state == AuthState.categories) MaterialPage(child: CategoriesPage()),
         ],
         onPopPage: (route, result) => route.didPop(result),
       );

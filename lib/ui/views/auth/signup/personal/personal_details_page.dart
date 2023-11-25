@@ -44,8 +44,13 @@ class _PersonalDetailsPageState extends State<PersonalDetailsPage> {
         if (state.formStatus is EmailDuplicateFailed) {
           _showSnackBar(context, "This email address is already used");
         }
+        if (state.formStatus is FormValidationError) {
+          _showSnackBar(context, "Please fill in the information completely");
+        }
         if (state.formStatus is SubmissionSuccess) {
-          context.read<AuthCubit>().credentials = AuthCredentials(
+          context
+              .read<AuthCubit>()
+              .credentials = AuthCredentials(
               name: state.firstName,
               surname: state.lastName,
               email: state.email,
@@ -117,7 +122,7 @@ class _PersonalDetailsPageState extends State<PersonalDetailsPage> {
           ),
         ),
         continueButtonPress: () {
-          if (_formKey.currentState!.validate()) {
+          if (_formValidate()) {
             context.read<PersonalDetailsBloc>().add(PersonalDetailsSubmitted());
           } else {
             context
@@ -127,6 +132,11 @@ class _PersonalDetailsPageState extends State<PersonalDetailsPage> {
         },
       ),
     );
+  }
+
+  bool _formValidate()  {
+
+    return (context.read<PersonalDetailsBloc>().state.gender != "" && _formKey.currentState!.validate());
   }
 
   void _showSnackBar(BuildContext context, String message) {

@@ -7,26 +7,29 @@ import "package:http/http.dart" as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthService {
-  final String baseUrl = "http://ekran-env-2.eba-cg8dvrqm.eu-north-1.elasticbeanstalk.com/api/v1/";
+  final String baseUrl = "http://ekran-env-2.eba-cg8dvrqm.eu-north-1.elasticbeanstalk.com/api";
 
-  Future signOut() async{
+  Future signOut() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.remove("authToken");
+    await prefs.remove("userID");
   }
 
-  Future authSetUserToken({required String token}) async {
+  Future setUserTokenAndUserID({required String authToken, required String userID}) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.setString("authToken", token.toString());
+    await prefs.setString("authToken", authToken.toString());
+    await prefs.setString("userID", userID.toString());
   }
 
-  Future<String?> authGetUserToken() async {
+  Future<Map<String, dynamic>> getUserTokenAndUserID() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    String? token = await prefs.getString("authToken");
-    return token;
+    String? authToken = await prefs.getString("authToken");
+    String? userID = await prefs.getString("userID");
+    return {"authToken": authToken, "userID": userID};
   }
 
   Future<dynamic> registerPersonalUser({required AuthCredentials authCredentials}) async {
-    final uri = Uri.parse(baseUrl + "auth/app-user/register");
+    final uri = Uri.parse(baseUrl + "/v1/auth/app-user/register");
     final headers = {'Content-Type': 'application/json'};
     Map<String, dynamic> body = {
       "name": authCredentials.name,
@@ -50,11 +53,12 @@ class AuthService {
       );
       var responseBody = json.decode(response.body);
 
-      if (response.statusCode == 200) {
+      if (response.statusCode == 200 || response.statusCode == 201) {
         return {
           "status": true,
           "message": "created",
           "token": responseBody["data"]["token"],
+          "userID": responseBody["data"]["userId"]
         };
       }
       if (response.statusCode == 409) {
@@ -63,6 +67,7 @@ class AuthService {
           "message": "duplicate_email",
         };
       } else {
+        print(responseBody);
         return {
           "status": false,
           "message": "unknown",
@@ -82,7 +87,7 @@ class AuthService {
       password = authCredentials.password;
     }
 
-    final uri = Uri.parse(baseUrl + "auth/app-user/authenticate");
+    final uri = Uri.parse(baseUrl + "/v1/auth/app-user/authenticate");
     final headers = {'Content-Type': 'application/json'};
     Map<String, dynamic> body = {"email": email, "password": password};
 
@@ -100,7 +105,12 @@ class AuthService {
       print(responseBody);
 
       if (response.statusCode == 200) {
-        return {"status": true, "message": "authenticated", "token": responseBody["data"]["token"]};
+        return {
+          "status": true,
+          "message": "authenticated",
+          "token": responseBody["data"]["token"],
+          "userID": responseBody["data"]["userId"]
+        };
       } else {
         return {"status": false, "message": "email_or_password_wrong"};
       }
@@ -117,7 +127,7 @@ class AuthService {
       temp_email = authCredentials.email!;
     }
 
-    final uri = Uri.parse(baseUrl + "auth/app-user/emails/${temp_email}");
+    final uri = Uri.parse(baseUrl + "/v1/auth/app-user/emails/${temp_email}");
     final headers = {'Content-Type': 'application/json'};
 
     try {
@@ -126,25 +136,35 @@ class AuthService {
         headers: headers,
       );
       var responseBody = json.decode(response.body);
-      print(responseBody);
+
       if (response.statusCode == 200) {
         if (responseBody["data"] == true) {
+          print({"status": false, "message": "duplicate_email"});
           return {"status": false, "message": "duplicate_email"};
         } else {
+          print({"status": true, "message": "email_not_found"});
+
           return {"status": true, "message": "email_not_found"};
         }
       }
     } catch (e) {
+      print({"status": false, "message": "unknown"});
+
       return {"status": false, "message": "unknown"};
     }
   }
 
-  Future<dynamic> macth({required AuthCredentials authCredentials}) async {
-    final uri = Uri.parse(baseUrl + "auth/app-user/authenticate");
-    final headers = {'Content-Type': 'application/json'};
-    Map<String, dynamic> body = {"email": authCredentials.email, "password": authCredentials.password};
+  Future<dynamic> setVirtualConnectionType(
+      {required List<String> selectedVirtualConnectionTypeList, required String token, required String userID}) async {
+    final uri = Uri.parse(baseUrl + "/v1/matching/connection-types/university-students/virtual-connections");
+    final headers = {
+      'Content-Type': 'application/json; charset=utf-8',
+      'Authorization': 'Bearer $token',
+    };
 
-    String jsonBody = json.encode(body);
+    Map<String, dynamic> body = {"userId": userID, "virtualConnectionType": selectedVirtualConnectionTypeList};
+
+    String jsonBody = jsonEncode(body);
     final encoding = Encoding.getByName('utf-8');
 
     try {
@@ -154,15 +174,51 @@ class AuthService {
         body: jsonBody,
         encoding: encoding,
       );
+
       var responseBody = json.decode(response.body);
 
-      if (response.statusCode == 200) {
-        return {"status": true, "message": "authenticated", "token": responseBody["data"]["token"]};
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        return {"status": true, "message": "created"};
       } else {
-        return {"status": false, "message": "email_or_password_wrong"};
+        return {"status": false, "message": "unknown"};
       }
     } catch (e) {
-      return {"status": false, "message": "email_or_password_wrong"};
+      return {"status": false, "message": "unknown"};
     }
   }
+
+
+  Future<dynamic> setCategories(
+      {required List<String> selectedCategoriesList, required String token, required String userID}) async {
+    final uri = Uri.parse(baseUrl + "/v1/matching/preferred-categories/university-students");
+    final headers = {
+      'Content-Type': 'application/json; charset=utf-8',
+      'Authorization': 'Bearer $token',
+    };
+
+    Map<String, dynamic> body = {"userId": userID, "categories": selectedCategoriesList};
+
+    String jsonBody = jsonEncode(body);
+    final encoding = Encoding.getByName('utf-8');
+
+    try {
+      http.Response response = await http.post(
+        uri,
+        headers: headers,
+        body: jsonBody,
+        encoding: encoding,
+      );
+
+      var responseBody = json.decode(response.body);
+      print(responseBody);
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        return {"status": true, "message": "created"};
+      } else {
+        return {"status": false, "message": "unknown"};
+      }
+    } catch (e) {
+      return {"status": false, "message": "unknown"};
+    }
+  }
+
 }

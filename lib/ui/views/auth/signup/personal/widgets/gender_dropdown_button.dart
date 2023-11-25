@@ -16,7 +16,7 @@ class GenderDropDownButton extends StatefulWidget {
 }
 
 class _GenderDropDownButtonState extends State<GenderDropDownButton> {
-  final List<String> items = ["Male", "Female", "Other"];
+  final List<String> items = ["MALE", "FEMALE", "OTHER"];
 
   String? selectedValue;
 
@@ -44,13 +44,13 @@ class _GenderDropDownButtonState extends State<GenderDropDownButton> {
                     ),
                   ))
               .toList(),
-          value: selectedValue,
+          value:  state.gender == "" ? null :state.gender,
           onChanged: (String? value) {
             selectedValue = value;
             context
                 .read<PersonalDetailsBloc>()
                 .add(PersonalDetailsGenderChanged(gender: value));
-            print("gender: ${state.gender}");
+
           },
           buttonStyleData: ButtonStyleData(
             height: 48.h,

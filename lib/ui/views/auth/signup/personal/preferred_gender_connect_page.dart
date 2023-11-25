@@ -46,11 +46,15 @@ class PreferredGenderConnectPage extends StatelessWidget {
               color: Color(0xff7acfd3),
               animationColor: Color(0xff21AFB5),
               borderRadius: 10.r,
-              onTap: () {
+              onTap: () async {
                 context.read<AuthCubit>().credentials =
                     context.read<AuthCubit>().credentials.copyWith(preferredGender: "MALE");
-                context.read<AuthCubit>().showConnectionType();
-                context.read<AuthCubit>().RegisterNewUser();
+
+                await context.read<AuthCubit>().registerNewUser().then((value) {
+                  if (value["status"] == false) {
+                    _showSnackBar(context, "An error occurred");
+                  }
+                });
               }),
           22.verticalSpace,
           CustomButton(
@@ -69,11 +73,15 @@ class PreferredGenderConnectPage extends StatelessWidget {
               color: Color(0xff7acfd3),
               animationColor: Color(0xff21AFB5),
               borderRadius: 10.r,
-              onTap: () {
+              onTap: () async {
                 context.read<AuthCubit>().credentials =
                     context.read<AuthCubit>().credentials.copyWith(preferredGender: "FEMALE");
-                context.read<AuthCubit>().showConnectionType();
-                context.read<AuthCubit>().RegisterNewUser();
+
+                await context.read<AuthCubit>().registerNewUser().then((value) {
+                  if (value["status"] == false) {
+                    _showSnackBar(context, "An error occurred");
+                  }
+                });
               }),
           22.verticalSpace,
           CustomButton(
@@ -92,14 +100,23 @@ class PreferredGenderConnectPage extends StatelessWidget {
               color: Color(0xff7acfd3),
               animationColor: Color(0xff21AFB5),
               borderRadius: 10.r,
-              onTap: () {
+              onTap: () async {
                 context.read<AuthCubit>().credentials =
                     context.read<AuthCubit>().credentials.copyWith(preferredGender: "BOTH");
-                context.read<AuthCubit>().showConnectionType();
-                context.read<AuthCubit>().RegisterNewUser();
+
+                await context.read<AuthCubit>().registerNewUser().then((value) {
+                  if (value["status"] == false) {
+                    _showSnackBar(context, "An error occurred");
+                  }
+                });
               }),
         ],
       ),
     );
+  }
+
+  void _showSnackBar(BuildContext context, String message) {
+    final snackBar = SnackBar(content: Text(message));
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 }

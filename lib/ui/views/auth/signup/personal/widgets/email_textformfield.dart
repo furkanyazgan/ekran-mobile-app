@@ -7,20 +7,25 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class EmailTextFormField extends StatelessWidget {
   EmailTextFormField({Key? key}) : super(key: key);
+  TextEditingController _textEditingController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<PersonalDetailsBloc,PersonalDetailsState>(builder: (context, state) {
+    return BlocBuilder<PersonalDetailsBloc, PersonalDetailsState>(builder: (context, state) {
       return TextFormField(
+        initialValue: state.email,
+
         onChanged: (value) {
+
           context.read<PersonalDetailsBloc>().add(PersonalDetailsEmailChanged(email: value));
+
         },
-        validator: (value)=>state.isValidEmail ? null : "Lütfen e-maili kontrol ediniz",
+        validator: (value) => state.isValidEmail ? null : "",
         style: TextStyle(fontSize: 18.sp),
         decoration: InputDecoration(
+            errorStyle: const TextStyle(height: 0),
             filled: true,
-            contentPadding:
-                EdgeInsets.symmetric(horizontal: 12.w, vertical: 5.h),
+            contentPadding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 5.h),
             fillColor: Color(0xffC8EBED),
             enabledBorder: OutlineInputBorder(
                 borderSide: BorderSide(color: Colors.transparent),

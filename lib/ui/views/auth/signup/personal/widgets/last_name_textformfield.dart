@@ -13,12 +13,14 @@ class LastNameTextFormField extends StatelessWidget {
     return BlocBuilder<PersonalDetailsBloc,PersonalDetailsState>(builder: (context, state) {
 
       return TextFormField(
+        initialValue: state.lastName,
         onChanged: (value){
           context.read<PersonalDetailsBloc>().add(PersonalDetailsLastNameChanged(lastName: value));
         },
-        validator: (value) => state.isValidLastName ? null : "last name hatalı",
+        validator: (value) => state.isValidLastName ? null : "",
         style: TextStyle(fontSize: 18.sp),
         decoration: InputDecoration(
+            errorStyle: const TextStyle(height: 0),
             filled: true,
             contentPadding:
             EdgeInsets.symmetric(horizontal: 12.w, vertical: 5.h),

@@ -13,10 +13,10 @@ class SessionCubit extends Cubit<SessionState> {
 
 
   void attemptAutoLogin() async {
-    String? token = await authService.authGetUserToken();
-    print(token);
+    Map<String, dynamic> authData = await authService.getUserTokenAndUserID();
+    print("Localde bulunan bilgi: ${authData}");
 
-    if (token != null) {
+    if (authData["authToken"] != null) {
       emit(state.copyWith(authenticatStatus: AuthenticatStatuses.Authenticated));
     } else {
       emit(state.copyWith(authenticatStatus: AuthenticatStatuses.Unauthenticated));
