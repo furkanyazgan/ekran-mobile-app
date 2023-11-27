@@ -5,6 +5,7 @@ import 'package:ekran/core/controllers/auth/auth_cubit.dart';
 import 'package:ekran/core/controllers/auth/login/login_bloc.dart';
 import 'package:ekran/core/controllers/auth/register/personal_details/personal_details_block.dart';
 import 'package:ekran/core/controllers/session/session_cubit.dart';
+import 'package:ekran/ui/screens/signup_and_login_screens/category_details.dart';
 import 'package:ekran/ui/views/auth/signup/personal/connection_type_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

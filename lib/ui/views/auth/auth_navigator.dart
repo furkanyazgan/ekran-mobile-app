@@ -19,7 +19,6 @@ class AuthNavigator extends StatelessWidget {
           if(state == AuthState.startMain)MaterialPage(child: StartMainPage()),
           if(state == AuthState.universityOrAround)MaterialPage(child: UniversityOrAroundPage()),
           if(state == AuthState.login)MaterialPage(child: LoginPage()),
-
           if (state == AuthState.signUpPersonal) MaterialPage(child: PersonalDetailsPage()),
           if (state == AuthState.preferredGenderConnect) MaterialPage(child: PreferredGenderConnectPage()),
           if (state == AuthState.connectionType) MaterialPage(child: ConnectionTypePage()),

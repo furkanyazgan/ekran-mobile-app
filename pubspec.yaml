@@ -76,6 +76,11 @@ flutter:
     - assets/images/userIcon3.png
     - assets/images/continueIcon.png
     - assets/images/infoIcon.png
+    - assets/images/bottomNavigationBarIcons/chatIcon.png
+    - assets/images/bottomNavigationBarIcons/homeIcon.png
+    - assets/images/bottomNavigationBarIcons/locationIcon.png
+    - assets/images/bottomNavigationBarIcons/settingsIcon.png
+    - assets/images/bottomNavigationBarIcons/userprofileIcon.png
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

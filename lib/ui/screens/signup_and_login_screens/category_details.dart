@@ -9,6 +9,8 @@ import 'package:ekran/constants/project_themes.dart';
 import 'package:ekran/constants/text_styles.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+//3<= popup uyarı
+
 class CategoryDetailsPage extends StatefulWidget {
   CategoryDetailsPage({
     Key? key,
@@ -131,6 +133,7 @@ class _CategoryDetailsPageState extends State<CategoryDetailsPage> {
             ),
             15.verticalSpace,
             Wrap(
+
               runSpacing: 10,
               spacing: 10,
               children: selectedValues.map((item) {

@@ -7,5 +7,4 @@ class TextStyles {
   static  TextStyle getButtonTextStyle() => TextStyle(fontSize: 22.sp,fontWeight: FontWeight.w500, color: Colors.white);
   static  TextStyle getTitleTextStyle() => TextStyle(fontSize: 30.sp,fontWeight: FontWeight.w600, color: Colors.white);
 
-
 }

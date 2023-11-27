@@ -66,10 +66,12 @@ class AuthCubit extends Cubit<AuthState> {
   }
 
   Future<dynamic?> setVirtualConnectionType({required List<String> selectedVirtualConnectionTypeList}) async {
-    return await authService.setVirtualConnectionType(
-        selectedVirtualConnectionTypeList: selectedVirtualConnectionTypeList,
-        token: sessionCubit.state.authToken!,
-        userID: sessionCubit.state.userID!).then((value) {
+    return await authService
+        .setVirtualConnectionType(
+            selectedVirtualConnectionTypeList: selectedVirtualConnectionTypeList,
+            token: sessionCubit.state.authToken!,
+            userID: sessionCubit.state.userID!)
+        .then((value) {
       print(value);
       if (value["status"] == true) {
         showCategoriesPage();
@@ -78,18 +80,25 @@ class AuthCubit extends Cubit<AuthState> {
     });
   }
 
-  Future<dynamic> setCategories({required List<String> selectedCategoriesList}) async {
-    return await authService.setCategories(
-        selectedCategoriesList: selectedCategoriesList, token: sessionCubit.state.authToken!,
-        userID: sessionCubit.state.userID!).then((value) {
-       print(value);
-       if(value["status"] == true){
 
-       }
-       return value;
+
+  Future<dynamic> setCategories({required List<String> selectedCategoriesList}) async {
+    return await authService
+        .setCategories(
+            selectedCategoriesList: selectedCategoriesList,
+            token: sessionCubit.state.authToken!,
+            userID: sessionCubit.state.userID!)
+        .then((value) {
+      print(value);
+      if (value["status"] == true) {
+        sessionCubit.emit(sessionCubit.state.copyWith(authenticatStatus: AuthenticatStatuses.Authenticated));
+      }
+      return value;
     });
   }
 
-// void launchSession(AuthCredentials credentials) =>
-//     sessionCubit.showSession(credentials);
+
+
 }
+
+
