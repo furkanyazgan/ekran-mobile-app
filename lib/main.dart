@@ -6,13 +6,15 @@ import 'package:ekran/core/controllers/auth/login/login_bloc.dart';
 import 'package:ekran/core/controllers/auth/register/personal_details/personal_details_block.dart';
 import 'package:ekran/core/controllers/session/session_cubit.dart';
 import 'package:ekran/ui/views/auth/signup/personal/connection_type_page.dart';
+import 'package:ekran/ui/widgets/custom_match_card.dart';
+import 'package:ekran/ui/widgets/custom_scaffold.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 void main() {
-  runApp(  MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -23,11 +25,13 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
         providers: [
           BlocProvider(create: (context) => SessionCubit()),
-          BlocProvider(create: (context) => AuthCubit(sessionCubit: context.read<SessionCubit>())),
+          BlocProvider(
+              create: (context) =>
+                  AuthCubit(sessionCubit: context.read<SessionCubit>())),
           BlocProvider(create: (context) => PersonalDetailsBloc()),
-          BlocProvider(create: (context) => LoginBloc(authCubit: context.read<AuthCubit>())),
-
-
+          BlocProvider(
+              create: (context) =>
+                  LoginBloc(authCubit: context.read<AuthCubit>())),
         ],
         child: ScreenUtilInit(
           designSize: const Size(393, 852),
@@ -47,7 +51,18 @@ class MyApp extends StatelessWidget {
             );
           },
           // child: AppNavigator(),
-          child: AppNavigator(),
+          child: CustomScaffold(
+            titleWidget: Text(
+              'Test Page',
+            ),
+            bodyWidget: CustomMatchCard(
+              hasImage: false,
+              matchRate: 20,
+              name: 'Berat',
+              age: 21,
+              isSuccess: false,
+            ),
+          ),
         ));
   }
 }

@@ -18,6 +18,7 @@ class ProjectTheme extends ThemeExtension<ProjectTheme> {
     required this.webUrlTextColor,
     required this.iconColor,
     required this.borderCircleColor,
+    required this.boxColor,
     this.ozakLogoPath,
     this.dovizLogoPath,
     this.sarrafiyeLogoPath,
@@ -40,6 +41,7 @@ class ProjectTheme extends ThemeExtension<ProjectTheme> {
   final Color? webUrlTextColor;
   final Color? iconColor;
   final Color? borderCircleColor;
+  final Color? boxColor;
   final String? ozakLogoPath;
   final String? dovizLogoPath;
   final String? sarrafiyeLogoPath;
@@ -63,6 +65,7 @@ class ProjectTheme extends ThemeExtension<ProjectTheme> {
     Color? webUrlTextColor,
     Color? iconColor,
     Color? borderCircleColor,
+    Color? boxColor,
     String? ozakLogoPath,
     String? dovizLogoPath,
     String? sarrafiyeLogoPath,
@@ -88,6 +91,7 @@ class ProjectTheme extends ThemeExtension<ProjectTheme> {
       webUrlTextColor: webUrlTextColor ?? this.webUrlTextColor,
       iconColor: iconColor ?? this.iconColor,
       borderCircleColor: borderCircleColor ?? this.borderCircleColor,
+      boxColor: boxColor ?? this.boxColor,
       ozakLogoPath: ozakLogoPath ?? this.ozakLogoPath,
       dovizLogoPath: dovizLogoPath ?? this.dovizLogoPath,
       sarrafiyeLogoPath: sarrafiyeLogoPath ?? this.sarrafiyeLogoPath,
@@ -114,14 +118,13 @@ class ProjectTheme extends ThemeExtension<ProjectTheme> {
     webUrlTextColor: Color(0xFFE7A707),
     iconColor: Color(0xFF2C2A2A),
     borderCircleColor: Color(0xFF435F75),
+    boxColor: Color(0xFF20AFB5),
     ozakLogoPath: "assets/images/ozak-light-theme.png",
     dovizLogoPath: "assets/images/dövizLogo-light-theme.png",
     sarrafiyeLogoPath: "assets/images/sarrafiyeLogo-light-theme.png",
     themeChangeButtonImagePath: "assets/images/moon.png",
     menuButtonImagePath: "assets/images/menu-light-theme.png",
   );
-
-
 
   @override
   ProjectTheme lerp(ThemeExtension<ProjectTheme>? other, double time) {
@@ -157,6 +160,7 @@ class ProjectTheme extends ThemeExtension<ProjectTheme> {
       sarrafiyeLogoPath: sarrafiyeLogoPath,
       themeChangeButtonImagePath: themeChangeButtonImagePath,
       menuButtonImagePath: menuButtonImagePath,
+      boxColor: Color.lerp(boxColor, other.boxColor, t),
     );
   }
 }
