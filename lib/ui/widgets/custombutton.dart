@@ -39,6 +39,7 @@ class _CustomButtonState extends State<CustomButton> {
       width: widget.width,
       height: widget.height,
       child: Material(
+
         borderRadius: BorderRadius.circular(widget.borderRadius),
         color: widget.color,
         child: InkWell(

@@ -18,6 +18,7 @@ class ProjectTheme extends ThemeExtension<ProjectTheme> {
     required this.webUrlTextColor,
     required this.iconColor,
     required this.borderCircleColor,
+    required this.boxColor,
     this.ozakLogoPath,
     this.dovizLogoPath,
     this.sarrafiyeLogoPath,
@@ -40,6 +41,7 @@ class ProjectTheme extends ThemeExtension<ProjectTheme> {
   final Color? webUrlTextColor;
   final Color? iconColor;
   final Color? borderCircleColor;
+  final Color? boxColor;
   final String? ozakLogoPath;
   final String? dovizLogoPath;
   final String? sarrafiyeLogoPath;
@@ -63,6 +65,7 @@ class ProjectTheme extends ThemeExtension<ProjectTheme> {
     Color? webUrlTextColor,
     Color? iconColor,
     Color? borderCircleColor,
+    Color? boxColor,
     String? ozakLogoPath,
     String? dovizLogoPath,
     String? sarrafiyeLogoPath,
@@ -73,26 +76,27 @@ class ProjectTheme extends ThemeExtension<ProjectTheme> {
       mainColor: mainColor ?? this.mainColor,
       backButtonColor: backButtonColor ?? this.backButtonColor,
       scaffoldBackgroundColor:
-          scaffoldBackgroundColor ?? this.scaffoldBackgroundColor,
+      scaffoldBackgroundColor ?? this.scaffoldBackgroundColor,
       sectionBackgroundColor:
-          sectionBackgroundColor ?? this.sectionBackgroundColor,
+      sectionBackgroundColor ?? this.sectionBackgroundColor,
       buttonSelectColor: buttonSelectColor ?? this.buttonSelectColor,
       tabBarColor: tabBarColor ?? this.tabBarColor,
       appBarColor: appBarColor ?? this.appBarColor,
       containerColor: containerColor ?? this.containerColor,
       buySellContainerColor:
-          buySellContainerColor ?? this.buySellContainerColor,
+      buySellContainerColor ?? this.buySellContainerColor,
       borderColor: borderColor ?? this.borderColor,
       titleTextColor: titleTextColor ?? this.titleTextColor,
       titleDataTextColor: titleDataTextColor ?? this.titleDataTextColor,
       webUrlTextColor: webUrlTextColor ?? this.webUrlTextColor,
       iconColor: iconColor ?? this.iconColor,
       borderCircleColor: borderCircleColor ?? this.borderCircleColor,
+      boxColor: boxColor ?? this.boxColor,
       ozakLogoPath: ozakLogoPath ?? this.ozakLogoPath,
       dovizLogoPath: dovizLogoPath ?? this.dovizLogoPath,
       sarrafiyeLogoPath: sarrafiyeLogoPath ?? this.sarrafiyeLogoPath,
       themeChangeButtonImagePath:
-          themeChangeButtonImagePath ?? this.themeChangeButtonImagePath,
+      themeChangeButtonImagePath ?? this.themeChangeButtonImagePath,
       menuButtonImagePath: menuButtonImagePath ?? this.menuButtonImagePath,
     );
   }
@@ -114,14 +118,13 @@ class ProjectTheme extends ThemeExtension<ProjectTheme> {
     webUrlTextColor: Color(0xFFE7A707),
     iconColor: Color(0xFF2C2A2A),
     borderCircleColor: Color(0xFF435F75),
+    boxColor: Color(0xFF20AFB5),
     ozakLogoPath: "assets/images/ozak-light-theme.png",
     dovizLogoPath: "assets/images/dövizLogo-light-theme.png",
     sarrafiyeLogoPath: "assets/images/sarrafiyeLogo-light-theme.png",
     themeChangeButtonImagePath: "assets/images/moon.png",
     menuButtonImagePath: "assets/images/menu-light-theme.png",
   );
-
-
 
   @override
   ProjectTheme lerp(ThemeExtension<ProjectTheme>? other, double time) {
@@ -134,29 +137,30 @@ class ProjectTheme extends ThemeExtension<ProjectTheme> {
       mainColor: Color.lerp(mainColor, other.mainColor, t),
       backButtonColor: Color.lerp(backButtonColor, other.backButtonColor, t),
       scaffoldBackgroundColor:
-          Color.lerp(scaffoldBackgroundColor, other.scaffoldBackgroundColor, t),
+      Color.lerp(scaffoldBackgroundColor, other.scaffoldBackgroundColor, t),
       sectionBackgroundColor:
-          Color.lerp(sectionBackgroundColor, other.sectionBackgroundColor, t),
+      Color.lerp(sectionBackgroundColor, other.sectionBackgroundColor, t),
       buttonSelectColor:
-          Color.lerp(buttonSelectColor, other.buttonSelectColor, t),
+      Color.lerp(buttonSelectColor, other.buttonSelectColor, t),
       tabBarColor: Color.lerp(tabBarColor, other.tabBarColor, t),
       appBarColor: Color.lerp(appBarColor, other.appBarColor, t),
       containerColor: Color.lerp(containerColor, other.containerColor, t),
       buySellContainerColor:
-          Color.lerp(buySellContainerColor, other.buySellContainerColor, t),
+      Color.lerp(buySellContainerColor, other.buySellContainerColor, t),
       borderColor: Color.lerp(borderColor, other.borderColor, t),
       titleTextColor: Color.lerp(titleTextColor, other.titleTextColor, t),
       titleDataTextColor:
-          Color.lerp(titleDataTextColor, other.titleDataTextColor, t),
+      Color.lerp(titleDataTextColor, other.titleDataTextColor, t),
       webUrlTextColor: Color.lerp(webUrlTextColor, other.webUrlTextColor, t),
       iconColor: Color.lerp(iconColor, other.iconColor, t),
       borderCircleColor:
-          Color.lerp(borderCircleColor, other.borderCircleColor, t),
+      Color.lerp(borderCircleColor, other.borderCircleColor, t),
       ozakLogoPath: ozakLogoPath,
       dovizLogoPath: dovizLogoPath,
       sarrafiyeLogoPath: sarrafiyeLogoPath,
       themeChangeButtonImagePath: themeChangeButtonImagePath,
       menuButtonImagePath: menuButtonImagePath,
+      boxColor: Color.lerp(boxColor, other.boxColor, t),
     );
   }
 }

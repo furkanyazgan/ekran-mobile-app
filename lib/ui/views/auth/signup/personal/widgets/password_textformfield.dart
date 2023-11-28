@@ -7,7 +7,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class PasswordTextFormField extends StatelessWidget {
   PasswordTextFormField({Key? key}) : super(key: key);
-
+//min 6 max32
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<PersonalDetailsBloc, PersonalDetailsState>(builder: (context, state) {

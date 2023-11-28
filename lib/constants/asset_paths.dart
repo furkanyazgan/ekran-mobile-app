@@ -13,5 +13,6 @@ class AssetPath {
   static const String locationIcon = "assets/images/bottomNavigationBarIcons/locationIcon.png";
   static const String settingsIcon = "assets/images/bottomNavigationBarIcons/settingsIcon.png";
   static const String userprofileIcon = "assets/images/bottomNavigationBarIcons/userprofileIcon.png";
+  static const String person = "assets/images/person.png";
 
 }
