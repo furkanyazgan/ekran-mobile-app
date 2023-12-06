@@ -1,3 +1,4 @@
+import 'package:ekran/ui/views/session/location/connecting_settings_page.dart';
 import 'package:flutter/material.dart';
 
 class LocationNavigator extends StatelessWidget {
@@ -5,6 +6,6 @@ class LocationNavigator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(child: Text("Location Page"),);
+    return ConnectingSettings();
   }
 }

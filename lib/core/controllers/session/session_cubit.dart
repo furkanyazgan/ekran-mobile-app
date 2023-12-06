@@ -19,8 +19,9 @@ class SessionCubit extends Cubit<SessionState> {
     if (authData["authToken"] != null) {
       emit(state.copyWith(authenticatStatus: AuthenticatStatuses.Authenticated));
     } else {
-      emit(state.copyWith(authenticatStatus: AuthenticatStatuses.Unauthenticated));
+      emit(state.copyWith(authenticatStatus: AuthenticatStatuses.Authenticated));
     }
+
   }
 
   void showAuth() => emit(state.copyWith(authenticatStatus: AuthenticatStatuses.Unauthenticated));

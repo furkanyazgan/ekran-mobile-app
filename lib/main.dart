@@ -1,8 +1,12 @@
 import 'package:ekran/app_navigator.dart';
+import 'package:ekran/constants/asset_paths.dart';
 import 'package:ekran/constants/project_themes.dart';
 import 'package:ekran/constants/text_styles.dart';
 import 'package:ekran/core/controllers/auth/auth_cubit.dart';
 import 'package:ekran/core/controllers/auth/login/login_bloc.dart';
+import 'package:ekran/core/controllers/session/settings/settings_cubit.dart';
+import 'package:ekran/ui/screens/page.dart';
+import 'package:ekran/ui/views/auth/outline_page.dart';
 import 'package:ekran/core/controllers/auth/register/personal_details/personal_details_block.dart';
 import 'package:ekran/core/controllers/session/session_cubit.dart';
 import 'package:ekran/ui/screens/signup_and_login_screens/category_details.dart';
@@ -27,6 +31,7 @@ class MyApp extends StatelessWidget {
           BlocProvider(create: (context) => AuthCubit(sessionCubit: context.read<SessionCubit>())),
           BlocProvider(create: (context) => PersonalDetailsBloc()),
           BlocProvider(create: (context) => LoginBloc(authCubit: context.read<AuthCubit>())),
+          BlocProvider(create: (context) => SettingsCubit()),
 
 
         ],

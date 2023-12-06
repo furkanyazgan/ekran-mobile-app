@@ -35,7 +35,7 @@ class SettingsScaffold extends StatelessWidget {
             ),
           ),
           Material(
-            elevation: 8,
+            elevation: 4,
             child: Container(
               height: 128.h,
               width: double.infinity,

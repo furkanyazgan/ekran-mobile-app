@@ -3,6 +3,7 @@ import 'dart:js';
 import 'package:ekran/constants/text_styles.dart';
 import 'package:ekran/core/controllers/auth/auth_cubit.dart';
 import 'package:ekran/core/controllers/session/session_cubit.dart';
+import 'package:ekran/core/controllers/session/settings/settings_cubit.dart';
 import 'package:ekran/ui/views/session/settings/widgets/custom_settings_card.dart';
 import 'package:ekran/ui/views/session/settings/widgets/settings_scaffold.dart';
 import 'package:ekran/ui/widgets/custombutton.dart';
@@ -37,12 +38,36 @@ class EditProfilePage extends StatelessWidget {
                 ),
               ),
             ),
-            CustomSettingsCard(title: "Name", subTitle: "Saira Khan", onTap: () {}),
-            CustomSettingsCard(title: "Email", subTitle: "saira@sabanciuniv.edu", onTap: () {}),
-            CustomSettingsCard(title: "Change Categories", subTitle: "TV Series & Movies", onTap: () {}),
-            CustomSettingsCard(title: "Location", subTitle: "Ankara, Turkey", onTap: () {}),
-            CustomSettingsCard(title: "Password", subTitle: "*******", onTap: () {}),
-            CustomSettingsCard(title: "Preferred Matching", subTitle: "One to One Matching", onTap: () {}),
+            CustomSettingsCard(
+                title: "Name",
+                subTitle: "Saira Khan",
+                onTap: () {
+                  context.read<SettingsCubit>().showEditName();
+                }),
+            CustomSettingsCard(
+                title: "Email",
+                subTitle: "saira@sabanciuniv.edu",
+                onTap: () {
+                  context.read<SettingsCubit>().showEditEmail();
+                }),
+            CustomSettingsCard(
+                title: "Change Categories",
+                subTitle: "TV Series & Movies",
+                onTap: () {
+                  context.read<SettingsCubit>().showChangeCategories();
+                }),
+            CustomSettingsCard(
+                title: "Password",
+                subTitle: "*******",
+                onTap: () {
+                  context.read<SettingsCubit>().showPassword();
+                }),
+            CustomSettingsCard(
+                title: "Preferred Matching",
+                subTitle: "One to One Matching",
+                onTap: () {
+                  context.read<SettingsCubit>().showPreferredConnection();
+                }),
             10.verticalSpace,
             CustomButton(
                 child: Text(
@@ -53,7 +78,6 @@ class EditProfilePage extends StatelessWidget {
                 height: 59.h,
                 width: 294.w,
                 onTap: () {
-
                   context.read<SessionCubit>().signOut();
                 }),
             10.verticalSpace,
