@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:ekran/app_navigator.dart';
 import 'package:ekran/constants/asset_paths.dart';
 import 'package:ekran/constants/project_themes.dart';
@@ -15,6 +17,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+
+class AppScrollBehavior extends MaterialScrollBehavior {
+  @override
+  Set<PointerDeviceKind> get dragDevices => {
+    PointerDeviceKind.touch,
+    PointerDeviceKind.mouse,
+  };
+}
 
 void main() {
   runApp(  MyApp());
@@ -40,6 +51,7 @@ class MyApp extends StatelessWidget {
           minTextAdapt: true,
           builder: (_, child) {
             return MaterialApp(
+              scrollBehavior: AppScrollBehavior(),
               theme: ThemeData(
                       textTheme: Typography.englishLike2018
                           .apply(fontSizeFactor: 1.sp))

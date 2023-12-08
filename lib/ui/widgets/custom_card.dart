@@ -235,6 +235,7 @@ class _CustomCardState extends State<CustomCard> {
             ],
           ),
         ),
+        Spacer(),
         Padding(
           padding: const EdgeInsets.only(top: 10.0),
           child: Container(
@@ -267,6 +268,7 @@ class _CustomCardState extends State<CustomCard> {
             ),
           ),
         ),
+        30.verticalSpace
       ],
     );
   }

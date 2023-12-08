@@ -1,12 +1,7 @@
-import 'dart:js';
-
 import 'package:ekran/core/controllers/session/settings/settings_cubit.dart';
-import 'package:ekran/ui/views/session/settings/widgets/custom_edit_textfield_card.dart';
-import 'package:ekran/ui/views/session/settings/widgets/custom_settings_card.dart';
 import 'package:ekran/ui/views/session/settings/widgets/settings_scaffold.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ConnectingSettings extends StatefulWidget {
@@ -91,9 +86,7 @@ class _ConnectingSettingsState extends State<ConnectingSettings> {
                     IconButton(
                       alignment: Alignment.center,
                       padding: EdgeInsets.zero,
-                      onPressed: (){
-
-                      },
+                      onPressed: () {},
                       iconSize: 17.w,
                       icon: Icon(Icons.arrow_forward_ios),
                     ),
