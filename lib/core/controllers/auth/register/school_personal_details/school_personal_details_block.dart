@@ -1,38 +1,36 @@
 import 'package:ekran/core/controllers/auth/block_status.dart';
-import 'package:ekran/core/controllers/auth/register/personal_details/personal_details_event.dart';
-import 'package:ekran/core/controllers/auth/register/personal_details/personal_details_state.dart';
 import 'package:ekran/core/controllers/auth/register/school_personal_details/school_personal_details_event.dart';
+import 'package:ekran/core/controllers/auth/register/school_personal_details/school_personal_details_state.dart';
 import 'package:ekran/core/services/auth/auth_service.dart';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class PersonalDetailsBloc extends Bloc<PersonalDetailsEvent, PersonalDetailsState> {
+class SchoolPersonalDetailsBloc extends Bloc<SchoolPersonalDetailsEvent, SchoolPersonalDetailsState> {
   final authService = AuthService();
 
-  PersonalDetailsBloc() : super(const PersonalDetailsState()) {
-    on<PersonalDetailsEvent>((event, emit) async {
+  SchoolPersonalDetailsBloc() : super(const SchoolPersonalDetailsState()) {
+    on<SchoolPersonalDetailsEvent>((event, emit) async {
       await mapEventToState(event, emit);
     });
   }
 
-  Future mapEventToState(PersonalDetailsEvent event, Emitter<PersonalDetailsState> emit) async {
-    if (event is PersonalDetailsFistNameChanged) {
+  Future mapEventToState(SchoolPersonalDetailsEvent event, Emitter<SchoolPersonalDetailsState> emit) async {
+    if (event is SchoolPersonalDetailsFistNameChanged) {
       emit(state.copyWith(firstName: event.firstName));
-    } else if (event is PersonalDetailsButtonClick) {
+    } else if (event is SchoolPersonalDetailsButtonClick) {
       emit(state.copyWith(buttonClick: !state.buttonClick));
-    } else if (event is PersonalDetailsLastNameChanged) {
+    } else if (event is SchoolPersonalDetailsLastNameChanged) {
       emit(state.copyWith(lastName: event.lastName));
-    } else if (event is PersonalDetailsEmailChanged) {
+    } else if (event is SchoolPersonalDetailsEmailChanged) {
       emit(state.copyWith(email: event.email));
-    } else if (event is PersonalDetailsPasswordChanged) {
+    } else if (event is SchoolPersonalDetailsPasswordChanged) {
       emit(state.copyWith(password: event.password));
-    } else if (event is PersonalDetailsFormStatusChanged) {
+    } else if (event is SchoolPersonalDetailsFormStatusChanged) {
       emit(state.copyWith(formStatus: event.formStatus));
-    } else if (event is PersonalDetailsGenderChanged) {
+    } else if (event is SchoolPersonalDetailsGenderChanged) {
       emit(state.copyWith(gender: event.gender));
-    }else if (event is PersonalDetailsAgeChanged) {
+    } else if (event is SchoolPersonalDetailsAgeChanged) {
       emit(state.copyWith(age: event.age));
-    } else if (event is PersonalDetailsSubmitted) {
+    } else if (event is SchoolPersonalDetailsSubmitted) {
       emit(state.copyWith(formStatus: FormSubmitting()));
       await authService.personalEmailDuplicateCheck(email: state.email).then((value) {
         if (value["status"]) {

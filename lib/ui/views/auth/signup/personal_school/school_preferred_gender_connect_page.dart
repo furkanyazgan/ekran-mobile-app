@@ -8,8 +8,8 @@ import 'package:ekran/constants/text_styles.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class PreferredGenderConnectPage extends StatelessWidget {
-  const PreferredGenderConnectPage({Key? key}) : super(key: key);
+class SchoolPreferredGenderConnectPage extends StatelessWidget {
+  const SchoolPreferredGenderConnectPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +18,7 @@ class PreferredGenderConnectPage extends StatelessWidget {
       showContinueButton: false,
       backButtonPress: () {
         print("back");
-        context.read<AuthCubit>().showSignUpPersonal();
+        context.read<AuthCubit>().showSchoolPersonalDetailsPage();
       },
       titleWidget: Text(
         "Preferred Gender \nTo Connect With",
@@ -50,7 +50,7 @@ class PreferredGenderConnectPage extends StatelessWidget {
                 context.read<AuthCubit>().credentials =
                     context.read<AuthCubit>().credentials.copyWith(preferredGender: "MALE");
 
-                await context.read<AuthCubit>().registerAppUser().then((value) {
+                await context.read<AuthCubit>().registerSchoolUser().then((value) {
                   if (value["status"] == false) {
                     _showSnackBar(context, "An error occurred");
                   }
@@ -77,7 +77,7 @@ class PreferredGenderConnectPage extends StatelessWidget {
                 context.read<AuthCubit>().credentials =
                     context.read<AuthCubit>().credentials.copyWith(preferredGender: "FEMALE");
 
-                await context.read<AuthCubit>().registerAppUser().then((value) {
+                await context.read<AuthCubit>().registerSchoolUser().then((value) {
                   if (value["status"] == false) {
                     _showSnackBar(context, "An error occurred");
                   }
@@ -104,7 +104,7 @@ class PreferredGenderConnectPage extends StatelessWidget {
                 context.read<AuthCubit>().credentials =
                     context.read<AuthCubit>().credentials.copyWith(preferredGender: "BOTH");
 
-                await context.read<AuthCubit>().registerAppUser().then((value) {
+                await context.read<AuthCubit>().registerSchoolUser().then((value) {
                   if (value["status"] == false) {
                     _showSnackBar(context, "An error occurred");
                   }

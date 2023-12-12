@@ -10,7 +10,10 @@ class SessionCubit extends Cubit<SessionState> {
     attemptAutoLogin();
   }
 
+  void getUserModelData() async {
 
+
+  }
 
   void attemptAutoLogin() async {
     Map<String, dynamic> authData = await authService.getUserTokenAndUserID();
@@ -19,19 +22,16 @@ class SessionCubit extends Cubit<SessionState> {
     if (authData["authToken"] != null) {
       emit(state.copyWith(authenticatStatus: AuthenticatStatuses.Authenticated));
     } else {
-      emit(state.copyWith(authenticatStatus: AuthenticatStatuses.Authenticated));
+      emit(state.copyWith(authenticatStatus: AuthenticatStatuses.Unauthenticated));
     }
-
   }
 
   void showAuth() => emit(state.copyWith(authenticatStatus: AuthenticatStatuses.Unauthenticated));
 
-  void showSession() {
-    emit(state.copyWith(authenticatStatus: AuthenticatStatuses.Authenticated));
-  }
+  void showSession() => emit(state.copyWith(authenticatStatus: AuthenticatStatuses.Authenticated));
 
   void signOut() async {
-     await authService.signOut();
+    await authService.signOut();
     emit(state.copyWith(authenticatStatus: AuthenticatStatuses.Unauthenticated));
   }
 }

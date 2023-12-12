@@ -8,10 +8,14 @@ enum AuthState {
   startMain,
   login,
   signUpPersonal,
+  signUpSchoolPersonal,
   preferredGenderConnect,
+  schoolPreferredGenderConnect,
   connectionType,
+  schoolConnectionType,
   universityOrAround,
-  categories
+  categories,
+  schoolCategories,
 }
 
 class AuthCubit extends Cubit<AuthState> {
@@ -22,6 +26,10 @@ class AuthCubit extends Cubit<AuthState> {
   late AuthCredentials credentials = AuthCredentials();
 
   void showStartMainPage() => emit(AuthState.startMain);
+
+  void showPersonalDetailsPage() => emit(AuthState.signUpPersonal);
+
+  void showSchoolPersonalDetailsPage() => emit(AuthState.signUpSchoolPersonal);
 
   void showLoginPage() => emit(AuthState.login);
 
@@ -35,7 +43,11 @@ class AuthCubit extends Cubit<AuthState> {
 
   void showPreferredGenderConnect() => emit(AuthState.preferredGenderConnect);
 
+  void showSchoolPreferredGenderConnect() => emit(AuthState.schoolPreferredGenderConnect);
+
   void showConnectionType() => emit(AuthState.connectionType);
+
+  void showSchoolConnectionType() => emit(AuthState.schoolConnectionType);
 
   void saveAuthTokenAndUserID({required String authToken, required String userID}) {
     authService.setUserTokenAndUserID(authToken: authToken, userID: userID);
@@ -54,7 +66,9 @@ class AuthCubit extends Cubit<AuthState> {
     });
   }
 
-  Future<dynamic?> registerNewUser() async {
+  Future<dynamic?> registerAppUser() async {
+    //default-ageRange
+    credentials = credentials.copyWith(preferredAgeRanges: getPreferredAgeRanges(int.parse(credentials.age!)));
     return await authService.registerPersonalUser(authCredentials: credentials).then((value) {
       print(value);
       if (value["status"] == true) {
@@ -65,21 +79,44 @@ class AuthCubit extends Cubit<AuthState> {
     });
   }
 
-  Future<dynamic?> setVirtualConnectionType({required List<String> selectedVirtualConnectionTypeList}) async {
-    return await authService
-        .setVirtualConnectionType(
-            selectedVirtualConnectionTypeList: selectedVirtualConnectionTypeList,
-            token: sessionCubit.state.authToken!,
-            userID: sessionCubit.state.userID!)
-        .then((value) {
+  Future<dynamic?> registerSchoolUser() async {
+    //default-ageRange
+    credentials = credentials.copyWith(preferredAgeRanges: getPreferredAgeRanges(int.parse(credentials.age!)));
+    return await authService.registerSchoolUser(authCredentials: credentials).then((value) {
       print(value);
       if (value["status"] == true) {
-        showCategoriesPage();
+        saveAuthTokenAndUserID(authToken: value["token"], userID: value["userID"]);
+        showSchoolConnectionType();
       }
       return value;
     });
   }
 
+  Future<dynamic?> setVirtualConnectionType({required List<String> selectedVirtualConnectionTypeList}) async {
+    return await authService
+        .setVirtualConnectionType(
+      selectedVirtualConnectionTypeList: selectedVirtualConnectionTypeList,
+      token: sessionCubit.state.authToken!,
+    )
+        .then((value) {
+      print(value);
+
+      return value;
+    });
+  }
+
+  Future<dynamic?> setFaceToFaceConnectionType({required List<String> selectedFaceToFaceConnectionTypeList}) async {
+    return await authService
+        .setFaceToFaceConnectionType(
+      selectedFaceToFaceConnectionTypeList: selectedFaceToFaceConnectionTypeList,
+      token: sessionCubit.state.authToken!,
+    )
+        .then((value) {
+      print(value);
+
+      return value;
+    });
+  }
 
 
   Future<dynamic> setCategories({required List<String> selectedCategoriesList}) async {
@@ -87,7 +124,7 @@ class AuthCubit extends Cubit<AuthState> {
         .setCategories(
             selectedCategoriesList: selectedCategoriesList,
             token: sessionCubit.state.authToken!,
-            userID: sessionCubit.state.userID!)
+           )
         .then((value) {
       print(value);
       if (value["status"] == true) {
@@ -97,8 +134,13 @@ class AuthCubit extends Cubit<AuthState> {
     });
   }
 
+  List<int> getPreferredAgeRanges(int age) {
+    int minAge = age - 5;
+    int maxAge = age + 5;
 
-
+    if (minAge < 17) {
+      minAge = 17;
+    }
+    return [minAge, maxAge];
+  }
 }
-
-

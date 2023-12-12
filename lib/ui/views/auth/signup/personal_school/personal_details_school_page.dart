@@ -1,45 +1,37 @@
-import 'package:ekran/constants/asset_paths.dart';
+import 'package:ekran/constants/project_themes.dart';
 import 'package:ekran/constants/text_styles.dart';
 import 'package:ekran/core/controllers/auth/auth_cubit.dart';
 import 'package:ekran/core/controllers/auth/block_status.dart';
-import 'package:ekran/core/controllers/auth/register/personal_details/personal_details_block.dart';
-import 'package:ekran/core/controllers/auth/register/personal_details/personal_details_event.dart';
-import 'package:ekran/core/controllers/auth/register/personal_details/personal_details_state.dart';
-
+import 'package:ekran/core/controllers/auth/register/school_personal_details/school_personal_details_block.dart';
+import 'package:ekran/core/controllers/auth/register/school_personal_details/school_personal_details_event.dart';
+import 'package:ekran/core/controllers/auth/register/school_personal_details/school_personal_details_state.dart';
 import 'package:ekran/core/models/auth/auth_credentials.dart';
-import 'package:ekran/ui/views/auth/login/widgets/login_email_textformfield.dart';
-import 'package:ekran/ui/views/auth/signup/personal/widgets/age_textformfield.dart';
-import 'package:ekran/ui/views/auth/signup/personal/widgets/circular_progress_indicator.dart';
-import 'package:ekran/ui/views/auth/signup/personal/widgets/email_textformfield.dart';
-
-import 'package:ekran/ui/views/auth/signup/personal/widgets/first_name_textformfield.dart';
-import 'package:ekran/ui/views/auth/signup/personal/widgets/gender_dropdown_button.dart';
-import 'package:ekran/ui/views/auth/signup/personal/widgets/last_name_textformfield.dart';
-import 'package:ekran/ui/views/auth/signup/personal/widgets/password_textformfield.dart';
+import 'package:ekran/ui/views/auth/signup/personal_school/widgets/school_age_textformfield.dart';
+import 'package:ekran/ui/views/auth/signup/personal_school/widgets/school_circular_progress_indicator.dart';
+import 'package:ekran/ui/views/auth/signup/personal_school/widgets/school_email_textformfield.dart';
+import 'package:ekran/ui/views/auth/signup/personal_school/widgets/school_first_name_textformfield.dart';
+import 'package:ekran/ui/views/auth/signup/personal_school/widgets/school_gender_dropdown_button.dart';
+import 'package:ekran/ui/views/auth/signup/personal_school/widgets/school_last_name_textformfield.dart';
+import 'package:ekran/ui/views/auth/signup/personal_school/widgets/school_password_textformfield.dart';
 import 'package:ekran/ui/widgets/custom_scaffold.dart';
-import 'package:ekran/ui/widgets/custombutton.dart';
 import 'package:flutter/material.dart';
-import 'package:ekran/constants/project_themes.dart';
-import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'dart:math';
-
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class PersonalDetailsPage extends StatefulWidget {
-  const PersonalDetailsPage({Key? key}) : super(key: key);
+class SchoolPersonalDetailsPage extends StatefulWidget {
+  const SchoolPersonalDetailsPage({Key? key}) : super(key: key);
 
   @override
-  State<PersonalDetailsPage> createState() => _PersonalDetailsPageState();
+  State<SchoolPersonalDetailsPage> createState() => _SchoolPersonalDetailsPageState();
 }
 
-class _PersonalDetailsPageState extends State<PersonalDetailsPage> {
+class _SchoolPersonalDetailsPageState extends State<SchoolPersonalDetailsPage> {
   final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
     final themeProjectColors = Theme.of(context).extension<ProjectTheme>()!;
-    return BlocListener<PersonalDetailsBloc, PersonalDetailsState>(
+    return BlocListener<SchoolPersonalDetailsBloc, SchoolPersonalDetailsState>(
       listenWhen: ((previous, current) => previous.formStatus != current.formStatus),
       listener: (context, state) {
         if (state.formStatus is EmailDuplicateFailed) {
@@ -56,7 +48,7 @@ class _PersonalDetailsPageState extends State<PersonalDetailsPage> {
               age: "18",
               gender: state.gender,
               password: state.password);
-          context.read<AuthCubit>().showPreferredGenderConnect();
+          context.read<AuthCubit>().showSchoolPreferredGenderConnect();
         }
       },
       child: CustomScaffold(
@@ -81,7 +73,7 @@ class _PersonalDetailsPageState extends State<PersonalDetailsPage> {
               8.verticalSpace,
               SizedBox(
                 height: 36.h,
-                child: FirstNameTextFormField(),
+                child: SchoolFirstNameTextFormField(),
               ),
               15.verticalSpace,
               Text(
@@ -91,17 +83,17 @@ class _PersonalDetailsPageState extends State<PersonalDetailsPage> {
               8.verticalSpace,
               SizedBox(
                 height: 36.h,
-                child: LastNameTextFormField(),
+                child: SchoolLastNameTextFormField(),
               ),
               15.verticalSpace,
               Text(
-                "Email",
+                "School Email",
                 style: TextStyle(fontSize: 20.sp, color: Color(0xff7e8086)),
               ),
               8.verticalSpace,
               SizedBox(
                 height: 36.h,
-                child: EmailTextFormField(),
+                child: SchoolEmailTextFormField(),
               ),
               15.verticalSpace,
               Text(
@@ -111,7 +103,7 @@ class _PersonalDetailsPageState extends State<PersonalDetailsPage> {
               8.verticalSpace,
               SizedBox(
                 height: 36.h,
-                child: PasswordTextFormField(),
+                child: SchoolPasswordTextFormField(),
               ),
               15.verticalSpace,
               Text(
@@ -124,25 +116,25 @@ class _PersonalDetailsPageState extends State<PersonalDetailsPage> {
                   Expanded(
                     child: SizedBox(
                       height: 36.h,
-                      child: AgeTextFormField(),
+                      child: SchoolAgeTextFormField(),
                     ),
                   ),
                   25.horizontalSpace,
-                  Expanded(child: GenderDropDownButton()),
+                  Expanded(child: SchoolGenderDropDownButton()),
                 ],
               ),
               15.verticalSpace,
-              CircularProgressIndicatorWidget(),
+              SchoolCircularProgressIndicatorWidget(),
             ],
           ),
         ),
         continueButtonPress: () {
           if (_formValidate()) {
-            context.read<PersonalDetailsBloc>().add(PersonalDetailsSubmitted());
+            context.read<SchoolPersonalDetailsBloc>().add(SchoolPersonalDetailsSubmitted());
           } else {
             context
-                .read<PersonalDetailsBloc>()
-                .add(PersonalDetailsFormStatusChanged(formStatus: FormValidationError()));
+                .read<SchoolPersonalDetailsBloc>()
+                .add(SchoolPersonalDetailsFormStatusChanged(formStatus: FormValidationError()));
           }
         },
       ),
@@ -150,7 +142,7 @@ class _PersonalDetailsPageState extends State<PersonalDetailsPage> {
   }
 
   bool _formValidate() {
-    return (context.read<PersonalDetailsBloc>().state.gender != "" && _formKey.currentState!.validate());
+    return (context.read<SchoolPersonalDetailsBloc>().state.gender != "" && _formKey.currentState!.validate());
   }
 
   void _showSnackBar(BuildContext context, String message) {

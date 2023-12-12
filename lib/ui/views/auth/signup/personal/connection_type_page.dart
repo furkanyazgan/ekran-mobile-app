@@ -3,7 +3,7 @@ import 'package:ekran/core/controllers/auth/auth_cubit.dart';
 import 'package:ekran/core/models/enums/matching/connectionTypes/virtual_connection_type.dart';
 import 'package:ekran/ui/views/auth/signup/personal/categories_page.dart';
 import 'package:ekran/ui/views/auth/signup/personal/personal_details_page.dart';
-import 'package:ekran/ui/screens/signup_and_login_screens/personal_details_school_page.dart';
+import 'package:ekran/ui/views/auth/signup/personal_school/personal_details_school_page.dart';
 import 'package:ekran/ui/widgets/custom_radio_button.dart';
 import 'package:ekran/ui/widgets/custom_scaffold.dart';
 import 'package:ekran/ui/widgets/custombutton.dart';

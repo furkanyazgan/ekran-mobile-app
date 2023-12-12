@@ -18,6 +18,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import 'core/controllers/auth/register/school_personal_details/school_personal_details_block.dart';
+
 
 class AppScrollBehavior extends MaterialScrollBehavior {
   @override
@@ -41,6 +43,7 @@ class MyApp extends StatelessWidget {
           BlocProvider(create: (context) => SessionCubit()),
           BlocProvider(create: (context) => AuthCubit(sessionCubit: context.read<SessionCubit>())),
           BlocProvider(create: (context) => PersonalDetailsBloc()),
+          BlocProvider(create: (context) => SchoolPersonalDetailsBloc()),
           BlocProvider(create: (context) => LoginBloc(authCubit: context.read<AuthCubit>())),
           BlocProvider(create: (context) => SettingsCubit()),
 

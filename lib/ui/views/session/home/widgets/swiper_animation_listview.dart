@@ -1,6 +1,5 @@
 import 'package:card_swiper/card_swiper.dart';
 import 'package:ekran/ui/views/session/home/widgets/horizontal_swiper_listview.dart';
-import 'package:ekran/ui/widgets/custom_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 

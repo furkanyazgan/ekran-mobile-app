@@ -1,28 +1,29 @@
 import 'dart:math';
 
 import 'package:dropdown_button2/dropdown_button2.dart';
-import 'package:ekran/core/controllers/auth/register/personal_details/personal_details_block.dart';
-import 'package:ekran/core/controllers/auth/register/personal_details/personal_details_event.dart';
-import 'package:ekran/core/controllers/auth/register/personal_details/personal_details_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class GenderDropDownButton extends StatefulWidget {
-    GenderDropDownButton({Key? key}) : super(key: key);
+import 'package:ekran/core/controllers/auth/register/school_personal_details/school_personal_details_block.dart';
+import 'package:ekran/core/controllers/auth/register/school_personal_details/school_personal_details_event.dart';
+import 'package:ekran/core/controllers/auth/register/school_personal_details/school_personal_details_state.dart';
+
+class SchoolGenderDropDownButton extends StatefulWidget {
+  SchoolGenderDropDownButton({Key? key}) : super(key: key);
 
   @override
-  State<GenderDropDownButton> createState() => _GenderDropDownButtonState();
+  State<SchoolGenderDropDownButton> createState() => _SchoolGenderDropDownButtonState();
 }
 
-class _GenderDropDownButtonState extends State<GenderDropDownButton> {
+class _SchoolGenderDropDownButtonState extends State<SchoolGenderDropDownButton> {
   final List<String> items = ["MALE", "FEMALE", "OTHER"];
 
   String? selectedValue;
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<PersonalDetailsBloc, PersonalDetailsState>(builder: (context, state) {
+    return BlocBuilder<SchoolPersonalDetailsBloc, SchoolPersonalDetailsState>(builder: (context, state) {
       return DropdownButtonHideUnderline(
         child: DropdownButton2<String>(
           isExpanded: true,
@@ -44,13 +45,10 @@ class _GenderDropDownButtonState extends State<GenderDropDownButton> {
                     ),
                   ))
               .toList(),
-          value:  state.gender == "" ? null :state.gender,
+          value: state.gender == "" ? null : state.gender,
           onChanged: (String? value) {
             selectedValue = value;
-            context
-                .read<PersonalDetailsBloc>()
-                .add(PersonalDetailsGenderChanged(gender: value));
-
+            context.read<SchoolPersonalDetailsBloc>().add(SchoolPersonalDetailsGenderChanged(gender: value));
           },
           buttonStyleData: ButtonStyleData(
             height: 36.h,

@@ -65,6 +65,17 @@ class PersonalDetailsGenderChanged extends PersonalDetailsEvent {
   List<Object?> get props => [gender];
 }
 
+
+class PersonalDetailsAgeChanged extends PersonalDetailsEvent {
+  final String? age;
+
+  PersonalDetailsAgeChanged({this.age});
+
+  @override
+  List<Object?> get props => [age];
+}
+
+
 class PersonalDetailsSubmitted extends PersonalDetailsEvent {
   @override
   List<Object?> get props => [];

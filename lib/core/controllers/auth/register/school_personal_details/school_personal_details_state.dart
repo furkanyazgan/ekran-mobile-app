@@ -1,7 +1,8 @@
 import 'package:ekran/core/controllers/auth/block_status.dart';
 import 'package:equatable/equatable.dart';
 
-class PersonalDetailsState extends Equatable {
+class SchoolPersonalDetailsState extends Equatable {
+
   final bool buttonClick;
 
   final String firstName;
@@ -20,25 +21,27 @@ class PersonalDetailsState extends Equatable {
 
   bool get isValidPassword => password.length > 3;
 
-  final String gender;
-
   final String age;
 
   bool get isValidAge => age.length > 1;
 
+
+
+  final String gender;
+
   final AppSubmissionStatus formStatus;
 
-  const PersonalDetailsState(
+  const SchoolPersonalDetailsState(
       {this.buttonClick = false,
-      this.firstName = "",
-      this.lastName = "",
-      this.email = "",
-      this.password = "",
-      this.gender = "",
-      this.age = "",
-      this.formStatus = const InitialStatus()});
+        this.firstName = "",
+        this.lastName = "",
+        this.email = "",
+        this.password = "",
+        this.gender = "",
+        this.age = "",
+        this.formStatus = const InitialStatus()});
 
-  PersonalDetailsState copyWith({
+  SchoolPersonalDetailsState copyWith({
     bool? buttonClick,
     String? firstName,
     String? lastName,
@@ -48,7 +51,7 @@ class PersonalDetailsState extends Equatable {
     String? age,
     AppSubmissionStatus? formStatus,
   }) {
-    return PersonalDetailsState(
+    return SchoolPersonalDetailsState(
         buttonClick: buttonClick ?? this.buttonClick,
         firstName: firstName ?? this.firstName,
         lastName: lastName ?? this.lastName,
@@ -60,5 +63,5 @@ class PersonalDetailsState extends Equatable {
   }
 
   @override
-  List<Object> get props => [buttonClick, firstName, lastName, email, password, age, gender, formStatus];
+  List<Object> get props => [buttonClick, firstName, lastName, email, password,gender, age,formStatus];
 }
