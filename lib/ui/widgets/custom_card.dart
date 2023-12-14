@@ -1,5 +1,6 @@
 import 'package:ekran/constants/asset_paths.dart';
 import 'package:ekran/constants/project_themes.dart';
+import 'package:ekran/ui/views/session/home/widgets/custom_slidable_button.dart';
 import 'package:ekran/ui/widgets/custom_box.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -16,6 +17,7 @@ class CustomCard extends StatefulWidget {
     required this.city,
     required this.country,
   });
+
   final bool hasImage;
   final int matchRate;
   final String name;
@@ -23,6 +25,7 @@ class CustomCard extends StatefulWidget {
   final bool isOnline;
   final String city;
   final String country;
+
   @override
   State<CustomCard> createState() => _CustomCardState();
 }
@@ -80,14 +83,14 @@ class _CustomCardState extends State<CustomCard> {
                 width: 140,
                 child: widget.hasImage
                     ? Image.asset(
-                  AssetPath.userIcon,
-                  color: themeProjectColors.backButtonColor,
-                  width: 36.w,
-                )
+                        AssetPath.userIcon,
+                        color: themeProjectColors.backButtonColor,
+                        width: 36.w,
+                      )
                     : Image.asset(
-                  AssetPath.person,
-                  width: 50.w,
-                ),
+                        AssetPath.person,
+                        width: 50.w,
+                      ),
               ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -122,9 +125,7 @@ class _CustomCardState extends State<CustomCard> {
                           width: 7,
                           height: 7,
                           decoration: BoxDecoration(
-                            color: widget.isOnline
-                                ? const Color.fromRGBO(85, 173, 53, 1)
-                                : Colors.redAccent,
+                            color: widget.isOnline ? const Color.fromRGBO(85, 173, 53, 1) : Colors.redAccent,
                             shape: BoxShape.circle,
                           ),
                         ),
@@ -236,40 +237,44 @@ class _CustomCardState extends State<CustomCard> {
           ),
         ),
         Spacer(),
-        Padding(
-          padding: const EdgeInsets.only(top: 10.0),
+        // _buildButton(themeProjectColors),
+        CustomSlidableButton(),
+        30.verticalSpace
+      ],
+    );
+  }
+
+  Padding _buildButton(ProjectTheme themeProjectColors) {
+    return Padding(
+      padding: const EdgeInsets.only(top: 10.0),
+      child: Container(
+        width: 400,
+        height: 80,
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.topRight,
+            colors: [
+              Colors.white,
+              Color.fromARGB(202, 103, 80, 253),
+              Colors.white,
+            ],
+          ),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(6.0),
           child: Container(
-            width: 400,
-            height: 80,
-            decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.topLeft,
-                end: Alignment.topRight,
-                colors: [
-                  Colors.white,
-                  Color.fromARGB(202, 103, 80, 253),
-                  Colors.white,
-                ],
-              ),
-            ),
+            decoration: const BoxDecoration(color: Colors.white, shape: BoxShape.circle),
             child: Padding(
-              padding: const EdgeInsets.all(6.0),
-              child: Container(
-                decoration: const BoxDecoration(
-                    color: Colors.white, shape: BoxShape.circle),
-                child: Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Image.asset(
-                    AssetPath.userIcon,
-                    color: themeProjectColors.mainColor,
-                  ),
-                ),
+              padding: const EdgeInsets.all(10.0),
+              child: Image.asset(
+                AssetPath.userIcon,
+                color: themeProjectColors.mainColor,
               ),
             ),
           ),
         ),
-        30.verticalSpace
-      ],
+      ),
     );
   }
 }

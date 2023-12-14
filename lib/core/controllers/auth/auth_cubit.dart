@@ -135,8 +135,8 @@ class AuthCubit extends Cubit<AuthState> {
   }
 
   List<int> getPreferredAgeRanges(int age) {
-    int minAge = age - 5;
-    int maxAge = age + 5;
+    int minAge = age - 3;
+    int maxAge = age + 3;
 
     if (minAge < 17) {
       minAge = 17;
