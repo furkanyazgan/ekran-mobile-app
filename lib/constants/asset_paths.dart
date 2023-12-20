@@ -14,5 +14,10 @@ class AssetPath {
   static const String settingsIcon = "assets/images/bottomNavigationBarIcons/settingsIcon.png";
   static const String userprofileIcon = "assets/images/bottomNavigationBarIcons/userprofileIcon.png";
   static const String person = "assets/images/person.png";
+  static const String groupUsers = "assets/images/groupUsers.png";
+  static const String tolgahan = "assets/images/peoples/tolgahan.png";
+  static const String ege = "assets/images/peoples/ege.png";
+  static const String melis = "assets/images/peoples/melis.png";
+  static const String buse = "assets/images/peoples/buse.png";
 
 }

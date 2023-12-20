@@ -1,3 +1,4 @@
+import 'package:ekran/ui/views/session/chat/meassages_page.dart';
 import 'package:flutter/material.dart';
 
 class ChatNavigator extends StatelessWidget {
@@ -5,6 +6,6 @@ class ChatNavigator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(child: Text("Chat Page"),);
+    return MessagesPage();
   }
 }

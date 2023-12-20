@@ -1,17 +1,19 @@
 import 'package:ekran/constants/text_styles.dart';
+import 'package:ekran/core/controllers/auth/auth_cubit.dart';
 import 'package:ekran/ui/widgets/custom_box.dart';
 import 'package:ekran/ui/widgets/custom_scaffold.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class OutlinePage extends StatefulWidget {
-  const OutlinePage({Key? key}) : super(key: key);
+class SchoolOutlinePage extends StatefulWidget {
+   SchoolOutlinePage({Key? key}) : super(key: key);
 
   @override
-  State<OutlinePage> createState() => _OutlinePageState();
+  State<SchoolOutlinePage> createState() => _SchoolOutlinePageState();
 }
 
-class _OutlinePageState extends State<OutlinePage> {
+class _SchoolOutlinePageState extends State<SchoolOutlinePage> {
   @override
   Widget build(BuildContext context) {
     return CustomScaffold(
@@ -36,6 +38,7 @@ class _OutlinePageState extends State<OutlinePage> {
                 decoration: InputDecoration(
                     errorStyle: const TextStyle(height: 0),
                     filled: true,
+
                     contentPadding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 5.h),
                     fillColor: Color(0xffC8EBED),
                     enabledBorder: OutlineInputBorder(
@@ -61,7 +64,7 @@ class _OutlinePageState extends State<OutlinePage> {
                   constraints: BoxConstraints(maxHeight: 100),
                   errorStyle: const TextStyle(height: 0),
                   filled: true,
-                  contentPadding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 5.h),
+                  contentPadding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 10.h),
                   fillColor: Color(0xffC8EBED),
                   enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(color: Colors.transparent),
@@ -100,6 +103,20 @@ class _OutlinePageState extends State<OutlinePage> {
             Text("Gemini")
 
           ],
-        ));
+        ),
+
+    continueButtonPress: (){
+          context.read<AuthCubit>().setBiographies(motto: "example motto", aboutMe: "exampe About Me").then((value) {
+            if(value["status"] == false){
+              _showSnackBar(context, "error");
+            }
+
+          });
+    },);
+  }
+
+  void _showSnackBar(BuildContext context, String message) {
+    final snackBar = SnackBar(content: Text(message));
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 }

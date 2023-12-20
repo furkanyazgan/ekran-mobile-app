@@ -4,12 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomEditTextFieldCard extends StatefulWidget {
-  CustomEditTextFieldCard({Key? key, required this.title, required this.subTitle, required this.onTap})
+  CustomEditTextFieldCard({Key? key, required this.title, required this.subTitle,  required   this.doneTap})
       : super(key: key);
 
   String title;
   String subTitle;
-  VoidCallback onTap;
+  Function(String)  doneTap;
+
 
   @override
   State<CustomEditTextFieldCard> createState() => _CustomEditTextFieldCardState();
@@ -41,6 +42,9 @@ class _CustomEditTextFieldCardState extends State<CustomEditTextFieldCard> {
                   isEdit == true
                       ? SizedBox(
                           child: TextFormField(
+                            onChanged: (value){
+                              text = value;
+                            },
                             initialValue: widget.subTitle,
                           ),
                           width: 200.w,
@@ -54,8 +58,13 @@ class _CustomEditTextFieldCardState extends State<CustomEditTextFieldCard> {
                 alignment: Alignment.center,
                 padding: EdgeInsets.zero,
                 onPressed: () {
+
                   setState(() {
                     isEdit = !isEdit;
+
+                    if(isEdit == false){
+                      widget.doneTap(text);
+                    }
                   });
                 },
                 iconSize: 33.w,
@@ -65,10 +74,9 @@ class _CustomEditTextFieldCardState extends State<CustomEditTextFieldCard> {
                         size: 33.w,
                       )
                     : Icon(
-                  Icons.done,
-                  size: 33.w,
-                )
-                ,
+                        Icons.done,
+                        size: 33.w,
+                      ),
               ),
             ],
           ),

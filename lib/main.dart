@@ -8,7 +8,7 @@ import 'package:ekran/core/controllers/auth/auth_cubit.dart';
 import 'package:ekran/core/controllers/auth/login/login_bloc.dart';
 import 'package:ekran/core/controllers/session/settings/settings_cubit.dart';
 import 'package:ekran/ui/screens/page.dart';
-import 'package:ekran/ui/views/auth/outline_page.dart';
+import 'package:ekran/ui/views/auth/signup/personal_school/school_outline_page.dart';
 import 'package:ekran/core/controllers/auth/register/personal_details/personal_details_block.dart';
 import 'package:ekran/core/controllers/session/session_cubit.dart';
 import 'package:ekran/ui/screens/signup_and_login_screens/category_details.dart';
@@ -38,14 +38,16 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+
     return MultiBlocProvider(
         providers: [
-          BlocProvider(create: (context) => SessionCubit()),
+          BlocProvider(create: (context) => SessionCubit( )),
           BlocProvider(create: (context) => AuthCubit(sessionCubit: context.read<SessionCubit>())),
           BlocProvider(create: (context) => PersonalDetailsBloc()),
           BlocProvider(create: (context) => SchoolPersonalDetailsBloc()),
           BlocProvider(create: (context) => LoginBloc(authCubit: context.read<AuthCubit>())),
-          BlocProvider(create: (context) => SettingsCubit()),
+          BlocProvider(create: (context) => SettingsCubit(sessionCubit: context.read<SessionCubit>())),
 
 
         ],

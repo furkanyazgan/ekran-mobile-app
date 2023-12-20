@@ -50,6 +50,7 @@ class CustomBox extends StatelessWidget {
                     text,
                     style: const TextStyle(
                       fontSize: 16,
+                      color: Colors.white,
                       fontWeight: FontWeight.w400,
                     ),
                   ),

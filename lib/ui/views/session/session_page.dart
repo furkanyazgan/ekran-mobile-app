@@ -16,10 +16,10 @@ class SessionPage extends StatefulWidget {
 }
 
 class _SessionPageState extends State<SessionPage> {
-
   @override
   void initState() {
-  context.read<SessionCubit>().getUserModelData();
+    context.read<SessionCubit>().getUserModelData();
+
     super.initState();
   }
 

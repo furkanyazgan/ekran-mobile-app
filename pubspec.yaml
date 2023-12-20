@@ -78,11 +78,16 @@ flutter:
     - assets/images/userIcon3.png
     - assets/images/continueIcon.png
     - assets/images/infoIcon.png
+    - assets/images/groupUsers.png
     - assets/images/bottomNavigationBarIcons/chatIcon.png
     - assets/images/bottomNavigationBarIcons/homeIcon.png
     - assets/images/bottomNavigationBarIcons/locationIcon.png
     - assets/images/bottomNavigationBarIcons/settingsIcon.png
     - assets/images/bottomNavigationBarIcons/userprofileIcon.png
+    - assets/images/peoples/buse.png
+    - assets/images/peoples/ege.png
+    - assets/images/peoples/melis.png
+    - assets/images/peoples/tolgahan.png
 
 
 

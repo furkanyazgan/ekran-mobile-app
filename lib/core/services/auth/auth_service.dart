@@ -27,6 +27,7 @@ class AuthService {
     String? authToken = await prefs.getString("authToken");
     String? userID = await prefs.getString("userID");
     return {"authToken": authToken, "userID": userID};
+
   }
 
   Future<dynamic> registerPersonalUser({required AuthCredentials authCredentials}) async {
@@ -141,13 +142,13 @@ class AuthService {
   }
 
 
-  Future<dynamic> loginPersonalUser({AuthCredentials? authCredentials, String? email, String? password}) async {
+  Future<dynamic> loginSchoolUser({AuthCredentials? authCredentials, String? email, String? password}) async {
     if (authCredentials != null) {
       email = authCredentials.email;
       password = authCredentials.password;
     }
-
-    final uri = Uri.parse(baseUrl + "/v1/auth/app-user/authenticate");
+    print(email);
+    final uri = Uri.parse(baseUrl + "/v1/auth/university-student/authenticate");
     final headers = {'Content-Type': 'application/json'};
     Map<String, dynamic> body = {"email": email, "password": password};
 
@@ -304,7 +305,7 @@ class AuthService {
       );
 
       var responseBody = json.decode(response.body);
-      print(responseBody);
+      print("setCategories: $responseBody");
       if (response.statusCode == 200 || response.statusCode == 201) {
         return {"status": true, "message": "created"};
       } else {
@@ -314,5 +315,44 @@ class AuthService {
       return {"status": false, "message": "unknown"};
     }
   }
+
+
+
+  Future<dynamic> setBiographies(
+      {required String motto , required String aboutMe, required String token,}) async {
+    final uri = Uri.parse(baseUrl + "/v1/users/profiles/biographies");
+    final headers = {
+      'Content-Type': 'application/json; charset=utf-8',
+      'Authorization': 'Bearer $token',
+    };
+
+    Map<String, dynamic> body = {
+      "motto": motto,
+      "about": aboutMe
+    };
+
+    String jsonBody = jsonEncode(body);
+    final encoding = Encoding.getByName('utf-8');
+
+    try {
+      http.Response response = await http.post(
+        uri,
+        headers: headers,
+        body: jsonBody,
+        encoding: encoding,
+      );
+
+      var responseBody = json.decode(response.body);
+      print("setCategories: $responseBody");
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        return {"status": true, "message": "created"};
+      } else {
+        return {"status": false, "message": "unknown"};
+      }
+    } catch (e) {
+      return {"status": false, "message": "unknown"};
+    }
+  }
+
 
 }

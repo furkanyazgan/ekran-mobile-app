@@ -9,16 +9,21 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class CustomCard extends StatefulWidget {
   const CustomCard({
     super.key,
-    required this.hasImage,
+
+    required this.imagePath,
     required this.matchRate,
     required this.name,
     required this.age,
+     this.gender,
+     this.universityName,
     required this.isOnline,
     required this.city,
     required this.country,
   });
 
-  final bool hasImage;
+  final String imagePath;
+  final String? gender;
+  final String? universityName;
   final int matchRate;
   final String name;
   final int age;
@@ -40,7 +45,7 @@ class _CustomCardState extends State<CustomCard> {
           padding: const EdgeInsets.symmetric(vertical: 20.0),
           child: Container(
             height: 30.w,
-            width: 220.h,
+            width: 230.h,
             decoration: BoxDecoration(
               color: themeProjectColors.boxColor,
               borderRadius: BorderRadius.circular(20.r),
@@ -58,7 +63,7 @@ class _CustomCardState extends State<CustomCard> {
                       ),
                     ),
                     TextSpan(
-                      text: ' Match Rate',
+                      text: ' Connection Rate',
                       style: TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.w900,
@@ -79,18 +84,12 @@ class _CustomCardState extends State<CustomCard> {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               SizedBox(
-                height: 140,
-                width: 140,
-                child: widget.hasImage
-                    ? Image.asset(
-                        AssetPath.userIcon,
-                        color: themeProjectColors.backButtonColor,
-                        width: 36.w,
-                      )
-                    : Image.asset(
-                        AssetPath.person,
-                        width: 50.w,
-                      ),
+                height: 140.h,
+                width: 140.w,
+                child: CircleAvatar(
+                  backgroundColor: Colors.transparent,
+                  backgroundImage: AssetImage(widget.imagePath),
+                ),
               ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -178,13 +177,13 @@ class _CustomCardState extends State<CustomCard> {
             ),
           ),
         ),
-        const Padding(
+          Padding(
           padding: EdgeInsets.symmetric(vertical: 10.0),
           child: Row(
             children: [
-              CustomBox(text: 'Deneme'),
+              CustomBox(text: widget.gender??""),
               CustomBox(
-                text: 'Deneme',
+                text: widget.universityName??"",
                 icon: Icons.school_outlined,
                 showIcon: true,
               ),

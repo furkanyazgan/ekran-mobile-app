@@ -140,19 +140,7 @@ class SchoolUser {
     data['registeredAt'] = registeredAt;
     data['updatedAt'] = updatedAt;
     data['universityEmail'] = universityEmail;
-    data['username'] = username;
-    if (authorities != null) {
-      final v = authorities;
-      final arr0 = [];
-      v!.forEach((v) {
-        arr0.add(v!.toJson());
-      });
-      data['authorities'] = arr0;
-    }
-    data['accountNonExpired'] = accountNonExpired;
-    data['accountNonLocked'] = accountNonLocked;
-    data['credentialsNonExpired'] = credentialsNonExpired;
-    data['enabled'] = enabled;
+
     return data;
   }
 }

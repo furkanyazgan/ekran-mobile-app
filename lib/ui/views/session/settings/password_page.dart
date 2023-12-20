@@ -26,7 +26,7 @@ class PasswordPage extends StatelessWidget {
       bodyWidget: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          CustomEditTextFieldCard(title: "Password", subTitle: "*********", onTap: () {}),
+          CustomEditTextFieldCard(title: "Password", subTitle: "*********", doneTap: (text) {}),
 
         ],
       ),

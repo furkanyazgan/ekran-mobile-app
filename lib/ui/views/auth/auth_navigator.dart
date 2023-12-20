@@ -8,6 +8,7 @@ import 'package:ekran/ui/views/auth/signup/personal/personal_details_page.dart';
 import 'package:ekran/ui/views/auth/signup/personal_school/personal_details_school_page.dart';
 import 'package:ekran/ui/views/auth/signup/personal_school/school_categories_page.dart';
 import 'package:ekran/ui/views/auth/signup/personal_school/school_connection_type_page.dart';
+import 'package:ekran/ui/views/auth/signup/personal_school/school_outline_page.dart';
 import 'package:ekran/ui/views/auth/signup/personal_school/school_preferred_gender_connect_page.dart';
 import 'package:ekran/ui/views/auth/start_main_page.dart';
 import 'package:ekran/ui/views/auth/university_or_around.dart';
@@ -31,6 +32,7 @@ class AuthNavigator extends StatelessWidget {
           if (state == AuthState.schoolConnectionType) MaterialPage(child: SchoolConnectionTypePage()),
           if (state == AuthState.categories) MaterialPage(child: CategoriesPage()),
           if (state == AuthState.schoolCategories) MaterialPage(child: SchoolCategoriesPage()),
+          if (state == AuthState.schoolOutlinePage) MaterialPage(child: SchoolOutlinePage()),
         ],
         onPopPage: (route, result) => route.didPop(result),
       );

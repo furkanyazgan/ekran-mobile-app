@@ -16,6 +16,7 @@ enum AuthState {
   universityOrAround,
   categories,
   schoolCategories,
+  schoolOutlinePage
 }
 
 class AuthCubit extends Cubit<AuthState> {
@@ -46,6 +47,7 @@ class AuthCubit extends Cubit<AuthState> {
   void showSchoolPreferredGenderConnect() => emit(AuthState.schoolPreferredGenderConnect);
 
   void showConnectionType() => emit(AuthState.connectionType);
+  void showSchoolOutlinePage() => emit(AuthState.schoolOutlinePage);
 
   void showSchoolConnectionType() => emit(AuthState.schoolConnectionType);
 
@@ -55,7 +57,7 @@ class AuthCubit extends Cubit<AuthState> {
   }
 
   Future<dynamic> loginUser() async {
-    return await authService.loginPersonalUser(authCredentials: credentials).then((value) async {
+    return await authService.loginSchoolUser(authCredentials: credentials).then((value) async {
       if (value["status"] == true) {
         saveAuthTokenAndUserID(authToken: value["token"], userID: value["userID"]);
 
@@ -128,8 +130,25 @@ class AuthCubit extends Cubit<AuthState> {
         .then((value) {
       print(value);
       if (value["status"] == true) {
+         showSchoolOutlinePage();
+      }
+      return value;
+    });
+  }
+
+
+  Future<dynamic?> setBiographies({required String motto,  required String aboutMe}) async {
+    return await authService
+        .setBiographies(
+       motto: motto, aboutMe:aboutMe,
+      token: sessionCubit.state.authToken!,
+    )
+        .then((value) {
+      print(value);
+      if(value["status"] == true){
         sessionCubit.emit(sessionCubit.state.copyWith(authenticatStatus: AuthenticatStatuses.Authenticated));
       }
+
       return value;
     });
   }
@@ -143,4 +162,5 @@ class AuthCubit extends Cubit<AuthState> {
     }
     return [minAge, maxAge];
   }
+
 }
