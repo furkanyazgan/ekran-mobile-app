@@ -18,7 +18,8 @@ class ChatScaffold extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final themeProjectColors = Theme.of(context).extension<ProjectTheme>()!;
-    return Scaffold(backgroundColor: themeProjectColors.mainColor,
+    return Scaffold(
+      backgroundColor: themeProjectColors.mainColor,
       body: Stack(
         children: [
           Container(
@@ -34,21 +35,30 @@ class ChatScaffold extends StatelessWidget {
                     15.horizontalSpace,
                     showBackButton
                         ? IconButton(
-                      padding: EdgeInsets.zero,
-                      onPressed: backButtonPress,
-                      iconSize: 33.w,
-                      icon: Transform.rotate(
-                        angle: 180 * pi / 180,
-                        child: Image.asset(
-                          AssetPath.continueIcon,
-                          color: Colors.white,
-                          width: 27.w,
-                        ),
-                      ),
-                    )
+                            padding: EdgeInsets.zero,
+                            onPressed: backButtonPress,
+                            iconSize: 33.w,
+                            icon: Transform.rotate(
+                              angle: 180 * pi / 180,
+                              child: Image.asset(
+                                AssetPath.continueIcon,
+                                color: Colors.white,
+                                width: 27.w,
+                              ),
+                            ),
+                          )
                         : SizedBox(),
                     10.horizontalSpace,
                     titleWidget == null ? SizedBox() : titleWidget!,
+                    Spacer(),
+                    IconButton(
+                        onPressed: () {},
+                        icon: Icon(
+                          Icons.search_rounded,
+                          color: Colors.white,
+                          size: 25.w,
+                        )),
+                    22.horizontalSpace
                   ],
                 ),
               ),

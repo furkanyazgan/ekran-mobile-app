@@ -25,7 +25,7 @@ class _SwiperAnimationListViewState extends State<SwiperAnimationListView> {
 
       itemWidth: 393.w,
       itemHeight: 590.h,
-      loop: false,
+      loop: true,
       duration: 250,
       scrollDirection: Axis.vertical,
       itemBuilder: (context, index) {
