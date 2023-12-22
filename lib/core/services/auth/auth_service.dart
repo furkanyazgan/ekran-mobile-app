@@ -7,8 +7,8 @@ import "package:http/http.dart" as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthService {
-  // final String baseUrl = "http://ekran-env-2.eba-cg8dvrqm.eu-north-1.elasticbeanstalk.com/api";
-  final String baseUrl = "http://localhost:8080/api";
+  final String baseUrl = "Ekran-env-1.eba-cg8dvrqm.eu-north-1.elasticbeanstalk.com/api";
+  // final String baseUrl = "http://localhost:8080/api";
 
   Future signOut() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -176,7 +176,7 @@ class AuthService {
         return {"status": false, "message": "email_or_password_wrong"};
       }
     } catch (e) {
-      return {"status": false, "message": "email_or_password_wrong"};
+      return {"status": false, "message": "email_or_passwossrd_wrong"};
     }
   }
 

@@ -58,8 +58,8 @@ class MyApp extends StatelessWidget {
             return MaterialApp(
               scrollBehavior: AppScrollBehavior(),
               theme: ThemeData(
-                      textTheme: Typography.englishLike2018
-                          .apply(fontSizeFactor: 1.sp))
+                  textTheme: Typography.englishLike2018
+                      .apply(fontSizeFactor: 1.sp))
                   .copyWith(
                 extensions: <ThemeExtension<dynamic>>[
                   ProjectTheme.light,

@@ -7,8 +7,8 @@ import "package:http/http.dart" as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SessionService {
-  // final String baseUrl = "http://ekran-env-2.eba-cg8dvrqm.eu-north-1.elasticbeanstalk.com/api";
-  final String baseUrl = "http://localhost:8080/api";
+  final String baseUrl = "Ekran-env-1.eba-cg8dvrqm.eu-north-1.elasticbeanstalk.com/api";
+  // final String baseUrl = "http://localhost:8080/api";
 
   Future<dynamic> getProfiles({required String token}) async {
     final uri = Uri.parse(baseUrl + "/v1/users/profiles");

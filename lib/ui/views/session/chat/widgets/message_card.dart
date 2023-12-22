@@ -1,10 +1,14 @@
 import 'package:ekran/constants/asset_paths.dart';
 import 'package:ekran/ui/views/session/chat/chat_page.dart';
+import 'package:ekran/ui/views/session/chat/chat_view_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class MessageCard extends StatelessWidget {
-  MessageCard({Key? key}) : super(key: key);
+  MessageCard({Key? key, required this.imagePath, required this.name}) : super(key: key);
+  String imagePath;
+
+  String name;
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +16,10 @@ class MessageCard extends StatelessWidget {
       onTap: () {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => ChatPage()),
+          MaterialPageRoute(
+              builder: (context) => ChatPage(
+                    name: name,
+                  )),
         );
       },
       child: Padding(
@@ -25,7 +32,7 @@ class MessageCard extends StatelessWidget {
                   width: 66.w,
                   height: 66.h,
                   child: CircleAvatar(
-                    backgroundImage: AssetImage(AssetPath.buse),
+                    backgroundImage: AssetImage(imagePath),
                   )),
               15.horizontalSpace,
               Column(
@@ -33,7 +40,7 @@ class MessageCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    "Pelin Balcan",
+                    name,
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                   ),
                   15.verticalSpace,

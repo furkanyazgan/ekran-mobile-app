@@ -64,6 +64,8 @@ class AuthCubit extends Cubit<AuthState> {
         sessionCubit.emit(sessionCubit.state
             .copyWith(authCredentials: credentials, authenticatStatus: AuthenticatStatuses.Authenticated));
       }
+      print(value)
+      ;
       return value;
     });
   }
