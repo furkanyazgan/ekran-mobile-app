@@ -33,13 +33,12 @@ class _PersonalDetailsCardState extends State<PersonalDetailsCard> {
   Widget build(BuildContext context) {
     final themeProjectColors = Theme.of(context).extension<ProjectTheme>()!;
     return Container(
-      decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.all(Radius.circular(25.r))),
+      decoration: BoxDecoration(color: Colors.transparent, borderRadius: BorderRadius.all(Radius.circular(25.r))),
       height: 590.h,
       width: 393.w,
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 38.w),
-        child: Center(
-            child: Column(
+        child: Column(
           children: [
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 20.0),
@@ -68,49 +67,41 @@ class _PersonalDetailsCardState extends State<PersonalDetailsCard> {
                 ),
               ),
             ),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Padding(
+                padding: const EdgeInsets.only(bottom: 20.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "Motto:",
+                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                    ),                   5.verticalSpace,
 
-            //TODO:This part should change when the photo starts being fetched from the database.
-            Padding(
-              padding: const EdgeInsets.only(bottom: 20.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      RichText(
-                        text: TextSpan(
-                          children: [
-                            TextSpan(
-                              text: "Motto:",
-                              style: TextStyle(
-                                color: const Color.fromRGBO(0, 0, 0, 0.7),
-                                fontWeight: FontWeight.w400,
-                                fontSize: 24.sp,
-                              ),
-                            ),
-
-                          ],
-                        ),
-                      ),
-
-                     ],
-                  ),
-                ],
+                    Text(
+                      '“Living my life in a way that I want.”',
+                      style: TextStyle(fontSize: 16),
+                    ), 15.verticalSpace,
+                    Text(
+                      "About Me:",
+                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                    ),
+                   5.verticalSpace,
+                    Text(
+                      'Just your average girl interested in music looking to make new friends at uni. Would love to meet like-minded people and hangout.',
+                      style: TextStyle(fontSize: 16),
+                    ),
+                  ],
+                ),
               ),
             ),
-
             const Padding(
               padding: EdgeInsets.symmetric(vertical: 10.0),
               child: Row(
                 children: [
-                  CustomBox(text: 'Deneme'),
-                  CustomBox(
-                    text: 'Deneme',
-                    icon: Icons.school_outlined,
-                    showIcon: true,
-                  ),
+                  CustomBox(text: 'Music',icon: Icons.music_note,showIcon: true,),
+
                 ],
               ),
             ),
@@ -159,42 +150,8 @@ class _PersonalDetailsCardState extends State<PersonalDetailsCard> {
                 ],
               ),
             ),
-            Spacer(),
-            Padding(
-              padding: const EdgeInsets.only(top: 10.0),
-              child: Container(
-                width: 400,
-                height: 80,
-                decoration: const BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.topLeft,
-                    end: Alignment.topRight,
-                    colors: [
-                      Colors.white,
-                      Color.fromARGB(202, 103, 80, 253),
-                      Colors.white,
-                    ],
-                  ),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(6.0),
-                  child: Container(
-                    decoration: const BoxDecoration(
-                        color: Colors.white, shape: BoxShape.circle),
-                    child: Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Image.asset(
-                        AssetPath.userIcon,
-                        color: themeProjectColors.mainColor,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            ),
-            30.verticalSpace,
           ],
-        )),
+        ),
       ),
     );
   }

@@ -42,7 +42,7 @@ class _CustomCardState extends State<CustomCard> {
     return Column(
       children: [
         Padding(
-          padding: const EdgeInsets.symmetric(vertical: 20.0),
+          padding: EdgeInsets.symmetric(vertical: 20.0.h, ),
           child: Container(
             height: 30.w,
             width: 230.h,
@@ -237,8 +237,7 @@ class _CustomCardState extends State<CustomCard> {
         ),
         Spacer(),
         // _buildButton(themeProjectColors),
-        CustomSlidableButton(),
-        30.verticalSpace
+
       ],
     );
   }

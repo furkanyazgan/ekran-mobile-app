@@ -15,27 +15,18 @@ class ConnectionCard extends StatefulWidget {
 class _ConnectionCardState extends State<ConnectionCard> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-
-          color: Colors.white,
-          borderRadius: BorderRadius.all(Radius.circular(25.r))),
-      height: 590.h,
-      width: 393.w,
-      child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 38.w),
-        child: Center(
-            child: CustomCard(
-                imagePath: widget.connectionModel.imagePath,
-                matchRate: 43,
-                gender: widget.connectionModel.gender,
-                universityName: "Bilkent University",
-                name: widget.connectionModel.name,
-                age: widget.connectionModel.age,
-                isOnline: true,
-                city: "city",
-                country: "country")),
-      ),
+    return Padding(
+      padding:EdgeInsets.symmetric(horizontal: 38.0),
+      child: CustomCard(
+          imagePath: widget.connectionModel.imagePath,
+          matchRate: 43,
+          gender: widget.connectionModel.gender,
+          universityName: "Bilkent University",
+          name: widget.connectionModel.name,
+          age: widget.connectionModel.age,
+          isOnline: true,
+          city: "city",
+          country: "country"),
     );
   }
 }
